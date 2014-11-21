@@ -6,5 +6,6 @@ if [ -e "$1.h" ]; then
 else 
 	echo "#ifndef __""$x""_H__">$1.h
 	echo "#define __""$x""_H__">>$1.h
+	echo "">>$1.h
 	echo "#endif">>$1.h
 fi
