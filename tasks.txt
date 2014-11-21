@@ -1,5 +1,0 @@
-- set up empty board with map (floors, chambers, passages, caves) and information
-- create an abstract character class with players and enemies, with respective fields and functions
-- create different player races and enemies with their custom properties
-- create items
-- random floor generation
