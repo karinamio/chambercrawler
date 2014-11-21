@@ -1,5 +1,7 @@
 We can keep track of all our crap here.
 
+Initial Plan of Attack: https://docs.google.com/document/d/1pVtHfJTBvFGoPx_Yhx3CFeagK0o9GIFWSvpZPqtM8Mg/edit
+
 ##### Breakdown:
 
 * Correctness and Completeness (60%)
