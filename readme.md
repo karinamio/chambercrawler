@@ -1,6 +1,7 @@
 We can keep track of all our crap here.
 
 Initial Plan of Attack: https://docs.google.com/document/d/1pVtHfJTBvFGoPx_Yhx3CFeagK0o9GIFWSvpZPqtM8Mg/edit
+
 Design Document: https://docs.google.com/document/d/13OLr2Sv-qP0ccbSuW02bg5NLgTVHQQTOC7kM9JevIgM/edit?usp=sharing
 
 ##### Breakdown:
