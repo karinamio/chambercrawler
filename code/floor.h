@@ -1,10 +1,12 @@
 #ifndef __FLOOR_H__
 #define __FLOOR_H__
 #include <list>
+
 class Cell;
 const int NUM_CHAMBERS = 5;
 const int MAP_HEIGHT = 25;
 const int MAP_WIDTH = 79;
+
 class Floor{
 	FloorSection *chambers[NUM_CHAMBERS];
 	FloorSection **passages;
@@ -21,4 +23,5 @@ public:
 	~Floor();
 	Floor();
 };
+
 #endif

@@ -11,4 +11,5 @@ class Board{
 	Map* map;
 	Display* display;
 };
+
 #endif
