@@ -6,6 +6,7 @@ protected:
 	int maxHP;
 	static Player * instance;
 public:
+	Player();
 	static Player * getInstance;
 	virtual void move(string direction);
 	virtual void attack(Enemy * enemy);
@@ -16,6 +17,7 @@ public:
 	virtual int score();
 	virtual void heal();
 	virtual void endTurn();
+	~Player();
 };
 
 #endif

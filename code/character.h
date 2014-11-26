@@ -6,7 +6,7 @@ protected:
 	int HP;
 	int Atk;
 	int Def;
-	Gold gold;
+	Gold * gold;
 	Info * info;
 public:
 	virtual void move() = 0;

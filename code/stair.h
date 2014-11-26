@@ -3,6 +3,8 @@
 
 #include "cell.h"
 
+class Board;
+
 class Stair : public CellDecorator {
 	protected:
 		Cell * cell;
