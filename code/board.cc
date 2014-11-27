@@ -81,4 +81,3 @@ void Board::startGame(){
 			break;
 		}
 	}
-}

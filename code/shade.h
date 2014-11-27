@@ -1,3 +1,6 @@
+#ifndef __SHADE_H__
+#define __SHADE_H__
+
 class Shade : public Player {
 public:
 	Shade();
@@ -6,3 +9,5 @@ public:
 	void attackBy(Player * player);
 	~Shade();
 };
+
+#endif

@@ -10,7 +10,7 @@ public:
 	static Player * getInstance;
 	virtual void move(string direction);
 	virtual void attack(Enemy * enemy);
-	virtual void attackBy(Player * player);
+	virtual void attackBy(Enemy * enemy);
 	virtual void defeated();
 	virtual void usePotion(string direction);
 	virtual void collect();

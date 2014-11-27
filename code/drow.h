@@ -1,3 +1,6 @@
+#ifndef __DROW_H__
+#define __DROW_H__
+
 class Drow : public Player {
 public:
 	Drow();
@@ -6,3 +9,5 @@ public:
 	void usePotion(string direction);
 	~Drow();
 };
+
+#endif

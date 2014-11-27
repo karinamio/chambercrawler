@@ -1,3 +1,6 @@
+#ifndef __TROLL_H__
+#define __TROLL_H__
+
 class Troll : public Player {
 public:
 	Troll();
@@ -6,3 +9,5 @@ public:
 	void attackBy(Player * player);
 	~Troll();
 };
+
+#endif

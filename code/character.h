@@ -8,6 +8,7 @@ protected:
 	int Def;
 	Gold * gold;
 	Info * info;
+	string type;
 public:
 	virtual void move() = 0;
 	virtual void attack() = 0;
