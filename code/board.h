@@ -7,6 +7,7 @@ class Map;
 class Info;
 class Board{
 	static Board *instance;
+	void startGame();
 	Character * player;
 	Floor * floor;
 	Map * map;
@@ -14,10 +15,10 @@ class Board{
 	int floorLevel;
 public:
 	Board();
-	static Board *getInstance();
+	// static Board *getInstance();
 	Floor * createFloor();
 	Character * createPlayer();
-	Board * getBoard();
+	static Board * getBoard();
 	void stairsReached();
 	~Board();
 };

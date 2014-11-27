@@ -13,7 +13,8 @@ class Floor{
 	FloorSection *cave;
 	std::list<Character *> moveQ;
 	Character **enemies;
-	Cell *Cell[MAP_HEIGHT][MAP_WIDTH];
+	Cell *cell[MAP_HEIGHT][MAP_WIDTH];
+	Map * textMap;
 public:
 	void spawnStair();
 	void spawnItems();

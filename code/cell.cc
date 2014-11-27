@@ -1,12 +1,8 @@
-#ifndef __CELL_H__
-#define __CELL_H__
-
 class Cell {
 protected:
 	Entity * cellObject;
 	Map * textMap;
-	Cell ** neighbours;
-	int numNeighbours;
+	Cell ** neighbours[9];
 	int x;
 	int y;
 public:
@@ -19,4 +15,11 @@ public:
 	void addNeighbour();
 };
 
-#endif
+Cell::Cell(Map* textMap, int x, int y):textMap(textMap), x(x), y(y), numNeighbours(0){
+
+}
+
+void Cell::addNeighbour(Cell *neighbour){
+	neighbours[numNeighbours] = neighbour;
+	++ numNeighbours;
+}
