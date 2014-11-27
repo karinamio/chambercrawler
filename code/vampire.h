@@ -1,3 +1,6 @@
+#ifndef __VAMPIRE_H__
+#define __VAMPIRE_H__
+
 class Vampire : public Player {
 public:
 	Vampire();
@@ -5,3 +8,5 @@ public:
 	void attackBy(Player * player);
 	~Vampire();
 };
+
+#endif
