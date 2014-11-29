@@ -22,8 +22,6 @@ void Character::endTurn() {
 
 }
 
-
-
 int Character::getDef() {
 	return Def;
 }

@@ -1,5 +1,6 @@
 #include "gold.h"
 #include "dragonhoard.h"
+
 using namespace std;
 
 Gold::Gold(int i){
@@ -24,24 +25,28 @@ Gold::Gold(int i){
 		type = "player"
 	}
 }
-bool Gold::takesSpace(){
+bool Gold::takesSpace() {
 	return false;
 }
-bool Gold::takesSpace(Character * character){
-	if (character->moveOut()){
+
+bool Gold::takesSpace(Character * character) {
+	if (character->moveOut()) {
 		return false;
 	}
 		return true;
 }
+
 bool Gold::collectable(){
 	return true;
 }
-void Gold::collect(Character *player){
+
+void Gold::collect(Character *player) {
 	player->collect(value);
 }
-Item* Gold::createGold(){
+
+Item * Gold::createGold() {
 	int random = random(3);
-	if (random == 2){
+	if (random == 2) {
 		Item * newGold = new DragonHoard();
 		return newGold;
 	}
@@ -50,7 +55,8 @@ Item* Gold::createGold(){
 		return newGold;
 	}
 }
-void Gold::addGold(int amount){
+
+void Gold::addGold(int amount) {
 	value += amount;
 }
 

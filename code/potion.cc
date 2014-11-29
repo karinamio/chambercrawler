@@ -1,10 +1,8 @@
+#include "potion.h"
 
-#include "potion.cc"
+using namespace std;
 
-Potion::~Potion(){
-	
-}
-Item * Potion::createPotion(){
+Item * Potion::createPotion() {
 	int random = random(6);
 	Item *newPotion;
 	if (random == 0){
@@ -32,4 +30,8 @@ Item * Potion::createPotion(){
 		return newPotion;
 	}
 	return NULL;
+}
+
+Potion::~Potion() {
+	
 }

@@ -8,7 +8,6 @@
 #include "drow.h"
 #include <string>
 
-
 using namespace std;
 
 Player * Player::instance = NULL;
@@ -19,6 +18,7 @@ Player * Player::getPlayer(int i) {
 	}
 	return instance;
 }
+
 Player * Player::setPlayer(int i) {
 	if (i == 0){
 		instance = new Shade;
@@ -35,16 +35,14 @@ Player * Player::setPlayer(int i) {
 	else if (i == 4){
 		instance = new Drow;
 	}
-		
 	return instance;
 }
 
-bool Player::moveOut(Cell * cell){
+bool Player::moveOut(Cell * cell) {
 	return true;
 }
 
 void Player::move(string direction) {
-
 	// find cell from direction
 	Cell* cell;
 	cell=location->neighbourMovable(this, direction);
@@ -57,7 +55,8 @@ void Player::move(string direction) {
 		location = cell;
 	}
 }
-bool Player::isPlayer(){
+
+bool Player::isPlayer() {
 	return true;
 }
 void Player::attack(Enemy * enemy) {

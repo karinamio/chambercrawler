@@ -1,4 +1,6 @@
 #include "cell.c"
-Cell::~Cell(){
 
+using namespace std;
+
+Cell::~Cell(){
 }

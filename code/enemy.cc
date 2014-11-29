@@ -1,11 +1,13 @@
 #include "entity.h"
 #include "character.h"
 #include "enemy.h"
+
 #include <time.h>
 #include <cstdlib>
+
 using namespace std;
 
-Character * createEnemy(){
+Character * createEnemy() {
 	srand(time(NULL));
 	int random = rand() % 18;
 	Character * newEnemy = NULL;
@@ -29,24 +31,25 @@ Character * createEnemy(){
 	}
 	return newEnemy;
 }
-bool Enemy::hostileEnemy(){
+
+bool Enemy::hostileEnemy() {
 	return true;
 }
 
 void Enemy::move() {
 	Character * possiblePlayer = location->playerInRange();
 	Cell * possibleMove;
-	if(possiblePlayer && this->hostileEnemy()){
+	if(possiblePlayer && this->hostileEnemy()) {
 		this.attack(possiblePlayer);
 	}
-	else{
-		possibleMove = location->randomMoveableCell()
-		if (possibleMove){
+	else {
+		possibleMove = location->randomMoveableCell();
+		if (possibleMove) {
 			possibleMove->setEntity(this);
 			location->setEntity(NULL);
 			location = possibleMove;
 		}
-		else{
+		else {
 
 		}
 	}

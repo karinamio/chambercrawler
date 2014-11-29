@@ -1,7 +1,9 @@
 #ifndef __ABSTRACTPLAYER_H__
 #define __ABSTRACTPLAYER_H__
+
 #include "character.h"
 #include <string>
+
 class AbstractPlayer: public Character{
 protected:
 	int maxHP;
@@ -18,4 +20,5 @@ public:
 	virtual Character* getPlayer();
 	virtual ~AbstractPlayer();
 };
+
 #endif
