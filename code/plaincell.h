@@ -8,8 +8,9 @@ public:
 	bool movable(Character * character);
 	bool attackable();
 	bool useable();
-	void addNeighbour(PlainCell *neighbour);
-
+	void addNeighbour(Cell *neighbour);
+	Cell* playerInRange();
+	Cell* randomMoveableCell();
 	void setEntity(Entity * entity);
 	void use();
 	~PlainCell();

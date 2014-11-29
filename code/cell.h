@@ -16,7 +16,9 @@ public:
 	virtual void setEntity(Entity * entity) = 0;
 	virtual bool useable() = 0;
 	virtual void use() = 0;
-	virtual void addNeighbour(PlainCell *neighbour) = 0;
+	virtual void addNeighbour(Cell *neighbour) = 0;
+	virtual Cell* playerInRange() = 0;
+	virtual Cell* randomMoveableCell() = 0;
 	virtual ~Cell() = 0;
 };
 

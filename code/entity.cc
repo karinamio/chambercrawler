@@ -7,7 +7,9 @@ int Entity::random(int upper){
 bool Entity::takesSpace(){
 	return true;
 }
-
+bool Entity::isPlayer(){
+	return false;
+}
 Entity::~Entity(){
 
 }

@@ -15,7 +15,9 @@ class CellDecorator : public Cell {
 		bool useable();
 		void use();
 		void addNeighbour(Cell *neighbour);
+		Cell* playerInRange();
 		void moved(Character *);
+		Cell* randomMoveableCell();
 		CellDecorator(Cell * cell);
 		~CellDecorator();
 };

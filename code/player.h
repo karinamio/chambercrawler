@@ -17,6 +17,7 @@ public:
 	virtual int score();
 	virtual void heal();
 	virtual void endTurn();
+	bool isPlayer();
 	~Player();
 };
 

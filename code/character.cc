@@ -15,25 +15,12 @@ bool Character::collectable() {
 	return false;
 }
 
-void Character::move() {
-
-}
-
-void Character::attack() {
-
-}
-
-void Character::defeated() {
-
-}
 
 void Character::endTurn() {
 
 }
 
-void Character::moveOut(Cell * cell) {
 
-}
 
 int Character::getDef() {
 	return Def;
@@ -45,5 +32,4 @@ int Character::getAtk() {
 
 Character::~Character() {
 	delete gold;
-	delete info;
 }

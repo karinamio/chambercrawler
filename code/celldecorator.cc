@@ -32,3 +32,11 @@ void CellDecorator::addNeighbour(PlainCell *neighbour){
 void CellDecorator::moved(Character *character){
 	setEntity(character);
 }
+
+Cell* CellDecorator::playerInRange(){
+	return cell->playerInRange();
+}
+
+Cell* CellDecorator::randomMoveableCell(){
+	return cell->randomMoveableCell();
+}

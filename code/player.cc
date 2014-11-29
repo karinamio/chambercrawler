@@ -19,7 +19,9 @@ void Player::move(string direction) {
 		// move player to new cell
 	}
 }
-
+bool Player::isPlayer(){
+	return true;
+}
 void Player::attack(Enemy * enemy) {
 
 }
