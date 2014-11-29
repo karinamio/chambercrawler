@@ -1,0 +1,4 @@
+#ifndef __RESTOREHEALTHPOTION_H__
+#define __RESTOREHEALTHPOTION_H__
+
+#endif

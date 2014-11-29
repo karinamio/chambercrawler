@@ -23,7 +23,7 @@ Board::getBoard(){
 }
 
 Floor *Board::createFloor(){
-	Floor *newFloor = new Floor(map);
+	Floor *newFloor = new Floor(map, player);
 	return newFloor;
 }
 

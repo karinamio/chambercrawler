@@ -8,11 +8,9 @@ using namespace std;
 
 Passage::Passage(Cell * cell) : CellDecorator(cell) {}
 
-bool Passage::isMovable(string type) {
-	if (type == 'player') {
-		return true;
+bool Stair::movable(Character * character){
+	if(cellObject){
+		return cellObject->takesSpace();
 	}
-	else {
-		return false;
-	}
+	return false;
 }

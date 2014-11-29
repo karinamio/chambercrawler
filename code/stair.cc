@@ -9,11 +9,12 @@ using namespace std;
 
 Stair::Stair(Cell * cell) : CellDecorator(cell), board(Board::getBoard()) {}
 
-bool Stair::isMovable(string type) {
-	if (type == 'player') {
-		return true;
+bool Stair::movable(Character * character){
+	if(cellObject){
+		return cellObject->takesSpace();
 	}
-	else {
-		return false;
-	}
+	return false;
+}
+Stair::moved(Character *character){
+	board->stairsReached();
 }

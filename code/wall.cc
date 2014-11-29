@@ -11,3 +11,11 @@ Wall::Wall(Cell * cell) : CellDecorator(cell) {}
 bool Wall::isMovable(string type) {
 	return false;
 }
+
+
+void Wall::setEntity(Entity * entity){
+
+}
+void Wall::use(){
+	
+}

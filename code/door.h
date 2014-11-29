@@ -5,10 +5,11 @@
 
 class Door : public CellDecorator {
 	protected:
+		static char self = '+';
 		Cell * cell;
 	public:
 		Door(Cell * cell);
-		bool isMovable(std::string type);
+		bool movable(Character * character);
 };
 
 #endif

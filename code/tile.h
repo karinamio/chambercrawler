@@ -6,11 +6,14 @@
 class Tile : public CellDecorator {
 	protected:
 		Cell * cell;
+		static char self = '.';
 	public:
 		Tile(Cell * cell);
-		void moved();
 		bool isMovable(std::string type);
-		void changeEntity(Entity * entity);
+		bool movable(Character * character);
+		bool attackable();
+		bool useable();
+		void use();
 };
 
 #endif

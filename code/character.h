@@ -17,7 +17,7 @@ public:
 	virtual void moveOut(Cell * cell) = 0;
 	virtual int getDef() = 0;
 	virtual int getAtk() = 0;
-	~Character();
+	virtual ~Character();
 };
 
 #endif

@@ -1,0 +1,4 @@
+#ifndef __POISONHEALTHPOTION_H__
+#define __POISONHEALTHPOTION_H__
+
+#endif

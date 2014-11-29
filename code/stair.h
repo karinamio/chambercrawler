@@ -9,10 +9,11 @@ class Stair : public CellDecorator {
 	protected:
 		Cell * cell;
 		Board * board;
+		static char self = '/';
 	public:
 		Stair(Cell * cell);
-		void moved();
-		bool isMovable(std::string type);
+		void moved(Character *);
+		bool movable(Character * character);
 };
 
 #endif

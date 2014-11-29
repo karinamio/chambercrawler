@@ -6,9 +6,11 @@
 class Wall : public CellDecorator {
 	protected:
 		Cell * cell;
+		static char self = '|';
 	public:
 		Wall(Cell * cell);
-		bool isMovable(std::string type);
+		void setEntity(Entity * entity);
+		void use();
 };
 
 #endif

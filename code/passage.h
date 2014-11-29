@@ -6,9 +6,10 @@
 class Passage : public CellDecorator {
 	protected:
 		Cell * cell;
+		static char self = '#';
 	public:
 		Passage(Cell * cell);
-		bool isMovable(std::string type);
+		bool movable(Character * character);
 };
 
 #endif
