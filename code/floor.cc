@@ -3,12 +3,14 @@
 #include <time.h>
 #include <cstdlib>
 
+using namespace std;
+
 class Cell;
 const int NUM_CHAMBERS = 5;
 const int MAP_HEIGHT = 25;
 const int MAP_WIDTH = 79;
 
-class Floor{
+class Floor {
 	FloorSection *chambers[NUM_CHAMBERS];
 	FloorSection *passages;
 	FloorSection *cave;
@@ -25,7 +27,7 @@ public:
 	Floor();
 };
 
-Floor::~Floor(){
+Floor::~Floor() {
 	for(int i = 0; i < MAP_HEIGHT; i++){
 		for(int j = 0; j < MAP_WIDTH; j++){
 			delete cell[i][j];
@@ -48,12 +50,14 @@ int randomChamber(){
 	randomChamber = rand() % 5;
 	return randomChamber;
 }
-void Floor::spawnCharacter(){
+
+void Floor::spawnCharacter() {
 	int randomChamber = randomChamber();
 	playerInitialChamber = randomChamber;
 	chambers[randomChamber]->spawnPlayer(player);
 }
-void Floor::spawnStair(){
+
+void Floor::spawnStair() {
 	int randomChamber;
 	while((randomChamber = randomChamber()) == playerInitialChamber){
 
@@ -61,25 +65,24 @@ void Floor::spawnStair(){
 	chambers[randomChamber]->spawnStair();
 }
 
-void Floor::spawnEnemies(){
+void Floor::spawnEnemies() {
 	for(int i = 0; i < 5; i++){
 		enemies[i] = chambers[i]->spawnEnemies();
 	}
 }
 
-void enemyDied(int chamber, int enemyID){
+void enemyDied(int chamber, int enemyID) {
 	delete enemies[chamber][enemyID];
 	enemies[chamber][enemyID] = NULL;
 }
 
-Floor::Floor(Map* textMap, Character* player): textMap(textMap), player(player){
+Floor::Floor(Map* textMap, Character* player): textMap(textMap), player(player) {
 	int randomChamber;
 	for(int i = 0; i < MAP_HEIGHT; i++){
 		for(int j = 0; j < MAP_WIDTH; j++){
 			cell[i][j] = new PlainCell(textMap, j, i);
 		}
 	}
-
 	for(int i = 0; i < MAP_HEIGHT; ++i){
 		for(int j = 0; j < MAP_WIDTH; ++j){
 			if (i != 0){
@@ -115,5 +118,4 @@ Floor::Floor(Map* textMap, Character* player): textMap(textMap), player(player){
 	chambers[4] = new Chamber(this,cell, 4);
 	passages = new Passage(cell);
 	cave = new Cave(cell);
-
 }

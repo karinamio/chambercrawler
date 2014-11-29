@@ -2,6 +2,7 @@
 #include <time.h>
 #include <cstdlib>
 #include <string>
+
 using namespace std;
 
 bool PlainCell::movable(Character * character){
@@ -82,13 +83,13 @@ Cell *PlainCell::neighbourMovable(Character* character, string direction){
 	}
 	return neighbour;
 }
-bool PlainCell::attackable(){
+bool PlainCell::attackable() {
 	return false;
 }
-bool PlainCell::useable(){
+bool PlainCell::useable() {
 	return false;
 }
-Cell* PlainCell::playerInRange(){
+Cell * PlainCell::playerInRange() {
 	for (int i = 0; i < numNeighbours; i++){
 		if (neighbours[i]->cellObject){
 			if(neighbours[i]->cellObject->isPlayer()){
@@ -99,7 +100,7 @@ Cell* PlainCell::playerInRange(){
 	}
 }
 
-Cell* PlainCell::randomMoveableCell(){
+Cell * PlainCell::randomMoveableCell() {
 	srand(time(NULL));
 	int random;
 	bool moveable = false;
@@ -115,26 +116,26 @@ Cell* PlainCell::randomMoveableCell(){
 	return moveableNeighbour;
 }
 
-PlainCell::~PlainCell(){
+PlainCell::~PlainCell() {
 
 }
 
-PlainCell::PlainCell(Map* textMap, int x, int y):textMap(textMap), x(x), y(y), numNeighbours(0){
+PlainCell::PlainCell(Map* textMap, int x, int y):textMap(textMap), x(x), y(y), numNeighbours(0) {
 
 }
 
-void PlainCell::addNeighbour(Cell *neighbour){
+void PlainCell::addNeighbour(Cell *neighbour) {
 	neighbours[numNeighbours] = neighbour;
 	++ numNeighbours;
 }
 
-PlainCell::~PlainCell(){
+PlainCell::~PlainCell() {
 
 }
 
-void setEntity(Entity * entity){
+void setEntity(Entity * entity) {
 	cellObject = entity;
 }
-void use(){
+void use() {
 	cellObject->use(character);
 }

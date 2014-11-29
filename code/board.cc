@@ -1,10 +1,11 @@
-
-#include <cstdlib>
-#include <iostream>
 #include "map.h"
 #include "info.h"
 #include "player.h"
 #include "floor.h"
+
+#include <cstdlib>
+#include <iostream>
+
 using namespace std;
 
 Board::Board():floorLevel(1){
@@ -54,7 +55,7 @@ Board::~Board(){
 }	delete map;
 
 void Board::startGame(){
-	ths.floor = createFloor();
+	this.floor = createFloor();
 	this.player = createPlayer();
 	this.floorLevel = 1;
 	string command;

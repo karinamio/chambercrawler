@@ -1,10 +1,14 @@
 #include "item.h"
-bool Item::attackable(){
+
+using namespace std;
+
+bool Item::attackable() {
 	return false;
 }
 
-void Item::addGold(int nothing){
+void Item::addGold(int nothing) {
 }
-int Item::getValue(){
+
+int Item::getValue() {
 	return 0;
 }
