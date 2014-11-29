@@ -53,19 +53,22 @@ void Enemy::move() {
 }
 
 void Enemy::attack(Character * player) {
-
+	player.attackBy(this);
 }
 
 void Enemy::attackBy(Character * player) {
-
+	HP -= ceil((100/(100+Def))*enemy->getAtk());
+		if (HP <= 0){
+			this.defeated();
+		}
 }
 
 void Enemy::defeated() {
-
+	floor->enemyDied(chamberID, ID);
 }
 
 bool Enemy::attackable() {
-
+ return true;
 }
 
 void Enemy::moveOut(Cell * cell) {

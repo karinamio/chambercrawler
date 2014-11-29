@@ -7,6 +7,7 @@
 #include "goblin.h"
 #include "drow.h"
 #include <string>
+#include <math.h>
 
 
 using namespace std;
@@ -61,15 +62,18 @@ bool Player::isPlayer(){
 	return true;
 }
 void Player::attack(Enemy * enemy) {
-	this.attack(enemy);
+	enemy.attackBy(this);
 }
 
 void Player::attackBy(Enemy * enemy) {
-	
+	HP -= ceil((100/(100+Def))*enemy->getAtk());
+	if (HP <= 0){
+		this.defeated();
+	}
 }
 
 void Player::defeated() {
-
+	floor->playerDied();
 }
 
 void Player::usePotion(string direction) {

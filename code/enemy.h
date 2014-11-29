@@ -2,6 +2,9 @@
 #define __ENEMY_H__
 #include "character.h"
 class Enemy : class Character {
+protected:
+	int chamberID;
+	int ID;
 public:
 	virtual void move();
 	virtual void attack(Character * player);

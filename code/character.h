@@ -1,5 +1,9 @@
 #ifndef __CHARACTER_H__
 #define __CHARACTER_H__
+#include <string>
+class Gold;
+class Info;
+class Floor;
 
 class Character : public Entity {
 protected:
@@ -8,7 +12,8 @@ protected:
 	int Def;
 	Gold * gold;
 	Info * info;
-	string type;
+	std::string type;
+	Floor *floor;
 public:
 	virtual void move() = 0;
 	virtual void attack(Character*) = 0;

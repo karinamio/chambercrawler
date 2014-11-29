@@ -38,6 +38,9 @@ Floor::~Floor(){
 }
 
 }
+void Floor::playerDied(){
+	
+}
 
 int randomChamber(){
 	int randomChamber;

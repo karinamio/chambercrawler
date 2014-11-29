@@ -26,6 +26,7 @@ public:
 	void spawnCharacter(Character *);
 	void spawnEnemies();
 	void decorateCells();
+	void playerDied();
 	void enemyDied(int, int);
 	~Floor();
 	Floor();
