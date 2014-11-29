@@ -77,19 +77,31 @@ Floor::Floor(Map* textMap, Character* player): textMap(textMap), player(player){
 		}
 	}
 
-	for(int i = 0; i < n; ++i){
-		for(int j = 0; j < n; ++j){
+	for(int i = 0; i < MAP_HEIGHT; ++i){
+		for(int j = 0; j < MAP_WIDTH; ++j){
 			if (i != 0){
-				cell[i][j]->addNeighbour(theGrid[i-1][j]);
+				cell[i][j]->addNeighbour(cell[i-1][j]);
 			}
-			if (i != n-1){
-				cell[i][j]->addNeighbour(theGrid[i+1][j]);
+			if (i != MAP_HEIGHT-1){
+				cell[i][j]->addNeighbour(cell[i+1][j]);
 			}
 			if (j != 0){
-				cell[i][j]->addNeighbour(theGrid[i][j-1]);
+				cell[i][j]->addNeighbour(cell[i][j-1]);
 			}
-			if (j != n-1){
-				cell[i][j]->addNeighbour(theGrid[i][j+1]);
+			if (j != MAP_WIDTH-1){
+				cell[i][j]->addNeighbour(cell[i][j+1]);
+			}
+			if (i != 0 && j != 0){
+				cell[i][j]->addNeighbour(cell[i-1][j-1]);
+			}
+			if (i != 0 && j != MAP_WIDTH-1){
+				cell[i][j]->addNeighbour(cell[i-1][j+1]);
+			}
+			if (i != MAP_HEIGHT-1 && j != 0){
+				cell[i][j]->addNeighbour(cell[i+1][j-1]);
+			}
+			if (i != MAP_HEIGHT-1 && j != MAP_WIDTH-1){
+				cell[i][j]->addNeighbour(cell[i+1][j+1]);
 			}
 		}
 	}

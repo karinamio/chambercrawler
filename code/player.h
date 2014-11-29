@@ -1,22 +1,24 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
-class Player : public Character {
+class Player : public AbstractPlayer {
 protected:
 	int maxHP;
 	static Player * instance;
 public:
 	Player();
-	static Player * getInstance;
+	static Player * getPlayer();
+	static Player * setPlayer(int);
 	virtual void move(string direction);
-	virtual void attack(Enemy * enemy);
-	virtual void attackBy(Enemy * enemy);
-	virtual void defeated();
-	virtual void usePotion(string direction);
-	virtual void collect();
-	virtual int score();
-	virtual void heal();
-	virtual void endTurn();
+	bool moveOut(Cell *);
+	void attack(Character*);
+	void attackBy(Character*);
+	void defeated();
+	void usePotion(string direction);
+	void collect(item *);
+	int score();
+	void heal();
+	void endTurn();
 	bool isPlayer();
 	~Player();
 };

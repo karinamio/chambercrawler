@@ -1,9 +1,86 @@
 #include "plaincell.h"
 #include <time.h>
 #include <cstdlib>
+#include <string>
+using namespace std;
 
 bool PlainCell::movable(Character * character){
 	return false;
+}
+
+bool PlainCell::collectable(Character * character){
+	if(cellObject){
+		return cellObject->collectable();
+	}
+	
+}
+void PlainCell::collect(Character * character){
+	if(cellObject){
+		cellObject->collect(character);
+	}
+}
+Cell *PlainCell::neighbourMovable(Character* character, string direction){
+	Cell *neighbour = NULL;
+	for (int i = 0; i < numNeighbours; i++){
+		if (direction == "no"){
+			if (neighbours[i]->x = x && neighbours[i]->y = y+1){
+				if (neighbours[i]->movable(character)){
+					neighbour = neighbours[i];
+				}	
+			}
+		}
+		else if (direction == "so"){
+			if (neighbours[i]->x = x && neighbours[i]->y = y-1){
+				if (neighbours[i]->movable(character)){
+					neighbour = neighbours[i];
+				}
+			}
+		}
+		else if (direction == "ea"){
+			if (neighbours[i]->x = x+1 && neighbours[i]->y = y){
+				if (neighbours[i]->movable(character)){
+					neighbour = neighbours[i];
+				}
+			}
+		}
+		else if (direction == "we"){
+			if (neighbours[i]->x = x-1 && neighbours[i]->y = y){
+				if (neighbours[i]->movable(character)){
+					neighbour = neighbours[i];
+				}
+			}
+		}
+		else if (direction == "ne"){
+			if (neighbours[i]->x = x+1 && neighbours[i]->y = y+1){
+				if (neighbours[i]->movable(character)){
+					neighbour = neighbours[i];
+				}
+			}
+		}
+		else if (direction == "nw"){
+			if (neighbours[i]->x = x-1 && neighbours[i]->y = y+1){
+				if (neighbours[i]->movable(character)){
+					neighbour = neighbours[i];
+				}
+			}
+		}
+		else if (direction == "se"){
+			if (neighbours[i]->x = x+1 && neighbours[i]->y = y-1){
+				if (neighbours[i]->movable(character)){
+					neighbour = neighbours[i];
+				}
+			}
+		}
+		else if (direction == "sw"){
+			if (neighbours[i]->x = x-1 && neighbours[i]->y = y-1){
+				if (neighbours[i]->movable(character)){
+					neighbour = neighbours[i];
+				}
+			}
+		}
+
+	}
+	return neighbour;
 }
 bool PlainCell::attackable(){
 	return false;

@@ -11,7 +11,9 @@ protected:
 	string type;
 public:
 	virtual void move() = 0;
-	virtual void attack() = 0;
+	virtual void attack(Character*) = 0;
+	virtual void attackBy(Character*) = 0;
+	virtual bool isPlayer();
 	virtual void defeated() = 0;
 	virtual void endTurn() = 0;
 	virtual void moveOut(Cell * cell) = 0;

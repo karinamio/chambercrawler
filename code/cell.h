@@ -1,5 +1,7 @@
 #ifndef __CELL_H__
 #define __CELL_H__
+#include <string>
+#include "map.h"
 
 class Cell {
 protected:
@@ -11,11 +13,14 @@ protected:
 	int y;
 public:
 	virtual bool movable(Character * character) = 0;
+	virtual Cell *neighbourMovable(Character* Character, std::string) = 0;
 	virtual void notify (int x, int y, char update) = 0;
 	virtual bool attackable() = 0;
 	virtual void setEntity(Entity * entity) = 0;
 	virtual bool useable() = 0;
 	virtual void use() = 0;
+	virtual bool collectable(Character *) = 0;
+	virtual void collect(Character *) = 0;
 	virtual void addNeighbour(Cell *neighbour) = 0;
 	virtual Cell* playerInRange() = 0;
 	virtual Cell* randomMoveableCell() = 0;

@@ -4,6 +4,8 @@
 class Item : public Entity{
 public:
 	bool attackable();
+	void addGold(int);
+	int getValue();
 };
 
 #endif

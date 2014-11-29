@@ -11,7 +11,7 @@ Tile::Tile(Cell * cell) : CellDecorator(cell) {}
 
 bool Tile::movable(Character * character){
 	if(cellObject){
-		return cellObject->takesSpace();
+		return cellObject->takesSpace(character);
 	}
 	return true;
 }

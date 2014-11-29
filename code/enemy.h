@@ -4,10 +4,11 @@
 class Enemy : class Character {
 public:
 	virtual void move();
-	virtual void attack(Player * player);
-	virtual void attackBy(Player * player);
+	virtual void attack(Character * player);
+	virtual void attackBy(Character * player);
 	virtual void defeated();
 	virtual bool attackable();
+	virtual bool hostileEnemy();
 	Character * createEnemy();
 };
 

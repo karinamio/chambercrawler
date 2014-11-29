@@ -14,7 +14,9 @@ bool Character::attackable() {
 bool Character::collectable() {
 	return false;
 }
-
+bool Character::isPlayer(){
+	return false;
+}
 
 void Character::endTurn() {
 

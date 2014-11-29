@@ -27,6 +27,12 @@ Gold::Gold(int i){
 bool Gold::takesSpace(){
 	return false;
 }
+bool Gold::takesSpace(Character * character){
+	if (character->moveOut()){
+		return false;
+	}
+		return true;
+}
 bool Gold::collectable(){
 	return true;
 }
@@ -43,4 +49,11 @@ Item* Gold::createGold(){
 		Item * newGold = new Gold(random);
 		return newGold;
 	}
+}
+void Gold::addGold(int amount){
+	value += amount;
+}
+
+int Gold::getValue(){
+	return value;
 }

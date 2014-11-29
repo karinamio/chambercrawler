@@ -9,9 +9,17 @@ CellDecorator::CellDecorator(Cell * cell) : cell(cell) {}
 CellDecorator::~CellDecorator() {
 	delete cell;
 }
-
+void CellDecorator::collect(Character * character){
+	cell->collect(character);
+}
+bool CellDecorator::collectable(Character * character){
+	return cell->collectable(character);
+}
 bool CellDecorator::movable(Character * character){
 	return cell->movable(character);
+}
+Cell *CellDecorator::neighbourMovable(Character* character, string direction){
+ 	return cell->neighbourMovable(character, direction);
 }
 bool CellDecorator::attackable(){
 	return cell->attackable();

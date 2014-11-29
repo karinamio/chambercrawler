@@ -29,37 +29,34 @@ Character * createEnemy(){
 	}
 	return newEnemy;
 }
+bool Enemy::hostileEnemy(){
+	return true;
+}
 
 void Enemy::move() {
 	Character * possiblePlayer = location->playerInRange();
 	Cell * possibleMove;
-	if(possiblePlayer){
-		possiblePlayer.attackBy(this);
+	if(possiblePlayer && this->hostileEnemy()){
+		this.attack(possiblePlayer);
 	}
 	else{
 		possibleMove = location->randomMoveableCell()
 		if (possibleMove){
-			possibleMove->moved(this);
+			possibleMove->setEntity(this);
+			location->setEntity(NULL);
+			location = possibleMove;
 		}
 		else{
 
 		}
 	}
-	// randomly select chamber
-	// randomly select cell from randomly selected chamber
-	if (cell->movable("enemy") == true) {
-		// move player to new cell
-	}
-	else {
-		// repeat above steps
-	}
 }
 
-void Enemy::attack(Player * player) {
+void Enemy::attack(Character * player) {
 
 }
 
-void Enemy::attackBy(Player * player) {
+void Enemy::attackBy(Character * player) {
 
 }
 
@@ -71,7 +68,7 @@ bool Enemy::attackable() {
 
 }
 
-void Character::moveOut(Cell * cell) {
+void Enemy::moveOut(Cell * cell) {
 	return false;
 }
 
