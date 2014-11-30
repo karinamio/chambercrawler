@@ -1,5 +1,6 @@
 #include "map.h"
 #include <iostream>
+
 using namespace std;
 
 Map::Map() {
@@ -22,6 +23,6 @@ void Map::print() {
 void Map::notify(int i, int j, char update) {
 	textMap[i][j] = update;
 }
-Map::~Map(){
 
+Map::~Map(){
 };

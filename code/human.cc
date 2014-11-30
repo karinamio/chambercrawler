@@ -11,6 +11,7 @@ Human::Human(Map *textMap, int ID, Floor * currentFloor) {
 	Atk = 200;
 	Def = 20;
 	gold = new Gold(5);
+	info = Board->info;
 	type = "Human";
 	self = 'H';
 	this->textMap = textMap;

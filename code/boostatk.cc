@@ -4,5 +4,6 @@
 BoostAtk::BoostAtk(AbstractPlayer * player, int Atk, int Def) : player(player), Atk(5), Def(0) {};
 
 int BoostAtk::getAtk() {
-	AbstractPlayer->attack(Character * character);
+	player->Atk += Atk;
+	return player->Atk;
 }

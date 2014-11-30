@@ -1,0 +1,7 @@
+- character movement
+- collecting gold
+- using potions
+
+- enemies have a 50% chance of missing their attack
+- action strings
+- special abilities for enemies 

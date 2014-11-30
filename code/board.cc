@@ -7,11 +7,14 @@
 #include "character.h"
 #include "player.h"
 using namespace std;
+
 Board *Board::instance = NULL;
 Board::Board():floorLevel(1),playing(true){
+
 	info = new Info;
 	map = new Map;
 }
+
 Board * Board::getBoard(){
 	if(instance){
 	}

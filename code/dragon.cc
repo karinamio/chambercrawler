@@ -9,7 +9,7 @@ Dragon::Dragon() {
 	HP = 150;
 	Atk = 20;
 	Def = 20;
-	gold = new Gold;
+	gold = new Gold(6);
 	info = Board->info;
 	type = "Dragon";
 }

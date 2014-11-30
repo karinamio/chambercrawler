@@ -26,12 +26,17 @@ Gold::Gold(int i){
 		value = 4;
 		type = "double normal";
 	}
+	else if (i == 6) {
+		value = 6;
+		type = "dragon"
+	}
 	else if (i == 10){
 		value = 0;
 		type = "player";
 	}
 	self = 'G';
 }
+
 bool Gold::takesSpace() {
 	return false;
 }

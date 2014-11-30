@@ -3,7 +3,9 @@
 #include "character.h"
 #include "shade.h"
 #include "gold.h"
+
 #include "floor.h"
+
 using namespace std;
 
 Shade::Shade(Info *newInfo, Map* textMap, Floor * currentFloor) {

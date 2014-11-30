@@ -20,8 +20,6 @@
 
 using namespace std;
 
-
-
 Character * Player::instance = NULL;
 
 Player::Player(){
