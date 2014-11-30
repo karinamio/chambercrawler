@@ -2,6 +2,8 @@
 #include "enemy.h"
 #include "character.h"
 #include "merchant.h"
+#include <time.h>
+#include <cstdlib>
 
 using namespace std;
 
@@ -10,9 +12,10 @@ Merchant::Merchant() {
 	HP = 30;
 	Atk = 70;
 	Def = 5;
-	gold = new Gold(4);
-	info = Board->info;
-	type = "Orc";
+	srand(time(NULL));
+	gold = new Gold(rand()%2);
+	type = "Merchant";
+	self = 'M';
 }
 
 void Merchant::defeated() {

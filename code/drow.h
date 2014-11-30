@@ -4,7 +4,7 @@
 #include <string>
 class Drow : public Player {
 public:
-	Drow();
+	Drow(Info *, Map*);
 	void usePotion(std::string direction);
 	~Drow();
 };

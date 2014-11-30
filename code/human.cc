@@ -3,6 +3,7 @@
 #include "character.h"
 #include "human.h"
 #include "gold.h"
+
 using namespace std;
 
 Human::Human() {
@@ -10,7 +11,6 @@ Human::Human() {
 	Atk = 20;
 	Def = 20;
 	gold = new Gold(5);
-	info = Board->info;
 	type = "Human";
 	self = 'H';
 }

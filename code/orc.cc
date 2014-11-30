@@ -2,6 +2,8 @@
 #include "enemy.h"
 #include "character.h"
 #include "orc.h"
+#include <time.h>
+#include <cstdlib>
 
 using namespace std;
 
@@ -9,9 +11,10 @@ Orc::Orc() {
 	HP = 180;
 	Atk = 30;
 	Def = 25;
-	gold = ;
-	info = Board->info;
+	srand(time(NULL));
+	gold = new Gold(rand()%2);
 	type = "Orc";
+	self = 'O';
 }
 
 void Elf::attack() {

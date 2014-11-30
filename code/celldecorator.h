@@ -12,6 +12,7 @@ class CellDecorator : public Cell {
 	public:
 		bool movable(Character * character);
 		Cell *neighbourMovable(Character*, std::string);
+		Cell *getNeighbour(Character*, std::string);
 		bool attackable();
 		void setEntity(Entity * entity);
 		bool useable();

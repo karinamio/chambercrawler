@@ -72,7 +72,7 @@ void Board::startGame(){
 		else if (command == "u") {
 			string direction;
 			cin >> direction;
-			// this->player->usePotion(direction);
+			this->player->usePotion(direction);
 		}
 		else if (command == "a") {
 			string direction;

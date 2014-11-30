@@ -1,7 +1,10 @@
 #include "entity.h"
 #include "character.h"
 #include "gold.h"
+
+#include <iostream>
 #include <string>
+
 using namespace std;
 
 bool Character::takesSpace() {
@@ -20,7 +23,9 @@ bool Character::isPlayer(){
 }
 
 void Character::endTurn() {
+}
 
+void Character::usePotion(string direction) {
 }
 
 int Character::getDef() {
@@ -31,21 +36,30 @@ int Character::getAtk() {
 	return Atk;
 }
 
+int Character::getHP() {
+	return HP;
+}
+
+void Character::heal(int amount) {
+
+}
+
 Character::~Character() {
 	// delete gold;
 }
-#include "gold.h"
-#include <iostream>
-using namespace std;
+
 void Character::addGold(int i){
 	this->gold->addGold(i);
 }	
+
 int Character::getValue(){
 	return -1;
 }
+
 void Character::move(std::string nothing){
 
 }
+
 void Character::collect(Entity * a){
-cout<<"fk me"<<endl;
+	cout<<"fk me"<<endl;
 }

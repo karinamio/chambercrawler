@@ -2,6 +2,8 @@
 #include "enemy.h"
 #include "character.h"
 #include "dwarf.h"
+#include <time.h>
+#include <cstdlib>
 
 using namespace std;
 
@@ -9,9 +11,10 @@ Dwarf::Dwarf() {
 	HP = 100;
 	Atk = 20;
 	Def = 30;
-	gold = ;
-	info = Board->info;
+	srand(time(NULL));
+	gold = new Gold(rand()%2);
 	type = "Dwarf";
+	self = 'D';
 }
 
 void Dwarf::attack() {

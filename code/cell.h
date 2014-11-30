@@ -7,7 +7,6 @@ class Character;
 class Entity;
 class Cell {
 protected:
-
 	Map * textMap;
 	Cell ** neighbours;
 	int numNeighbours;
@@ -19,6 +18,7 @@ public:
 	virtual Cell *neighbourMovable(Character* Character, std::string) = 0;
 	// virtual void notify (int x, int y, char update) = 0;
 	virtual bool attackable() = 0;
+	virtual Cell *getNeighbour(Character*, std::string);
 	virtual void setEntity(Entity * entity) = 0;
 	virtual bool useable() = 0;
 	virtual void use() = 0;

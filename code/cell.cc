@@ -20,6 +20,10 @@ int Cell::getNumNeighbours(){
 Cell** Cell::getNeighbours(){
 	return neighbours;
 }
+
+Cell * Cell::getNeighbour(Character * character, string direction){
+}
+
 Map* Cell::getTextMap(){
 	// textMap->print();
 	return textMap;

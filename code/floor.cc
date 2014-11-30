@@ -18,6 +18,14 @@
 #include "gold.h"
 #include "enemy.h"
 #include "human.h"
+#include "potion.h"
+#include "boostatkpotion.h"
+#include "boostdefpotion.h"
+#include "restorehealthpotion.h"
+#include "poisonhealthpotion.h"
+#include "woundatkpotion.h"
+#include "wounddefpotion.h"
+
 using namespace std;
 
 class Cell;
@@ -103,6 +111,7 @@ void Floor::decorateCells(bool different, std::string fileName){
 	char c;
 	int count = 0;
 	Entity * nGold = NULL;
+	Entity * nPotion = NULL;
 	ifstream file(fName.c_str());
 	while (getline(file,line)) {
 		// cout<<counti<<endl;
@@ -115,12 +124,10 @@ void Floor::decorateCells(bool different, std::string fileName){
 					cell[counti][countj] = new Tile(cell[counti][countj]);
 					break;
 				case '|':
-				// cout<<"hi"<<endl;
-				
+				// cout<<"hi"<<endl;				
 					cell[counti][countj] = new Wall(cell[counti][countj],'|');
 					break;
 				case '-':
-
 					cell[counti][countj] = new Wall(cell[counti][countj],'-');
 					break;	
 				case '#':
@@ -166,13 +173,55 @@ void Floor::decorateCells(bool different, std::string fileName){
 				case '9':
 					//dragon hoard
 					break;
+				// potions	
+				case '0':
+					// RH
+					cell[counti][countj] = new Tile(cell[counti][countj]);
+					nPotion = new RestoreHealthPotion();
+					cell[counti][countj]->setEntity(nPotion);
+					cell[counti][countj]->cellObject = nPotion;
+					break;
+				case '1':
+					// BA
+					cell[counti][countj] = new Tile(cell[counti][countj]);
+					nPotion = new BoostAtkPotion();
+					cell[counti][countj]->setEntity(nPotion);
+					cell[counti][countj]->cellObject = nPotion;
+					break;
+				case '2':
+					// BD
+					cell[counti][countj] = new Tile(cell[counti][countj]);
+					nPotion = new BoostDefPotion();
+					cell[counti][countj]->setEntity(nPotion);
+					cell[counti][countj]->cellObject = nPotion;
+					break;
+				case '3':
+					// PH
+					cell[counti][countj] = new Tile(cell[counti][countj]);
+					nPotion = new PoisonHealthPotion();
+					cell[counti][countj]->setEntity(nPotion);
+					cell[counti][countj]->cellObject = nPotion;
+					break;
+				case '4':
+					// WA
+					cell[counti][countj] = new Tile(cell[counti][countj]);
+					nPotion = new WoundAtkPotion();
+					cell[counti][countj]->setEntity(nPotion);
+					cell[counti][countj]->cellObject = nPotion;
+					break;
+				case '5':
+					// WD
+					cell[counti][countj] = new Tile(cell[counti][countj]);
+					nPotion = new WoundDefPotion();
+					cell[counti][countj]->setEntity(nPotion);
+					cell[counti][countj]->cellObject = nPotion;
+					break;
 				case 'H':
 					cell[counti][countj] = new Tile(cell[counti][countj]);
 					enemies[0] = new Human;
 					cell[counti][countj]->setEntity(enemies[0]);
 					cell[counti][countj]->cellObject = enemies[0];
 					break;
-
 			}
 			++ countj;
 			++ count;

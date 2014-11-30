@@ -17,12 +17,11 @@ Shade::Shade(Info *newInfo, Map* textMap) {
 	type = "Shade";
 	self = '@';
 	this->textMap = textMap;
-
 }
+
 int Shade::score() {
 	return (gold->getValue()*1.5);
 }
 
-Shade::~Shade(){
-
+Shade::~Shade() {
 }

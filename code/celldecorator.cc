@@ -22,6 +22,11 @@ CellDecorator::~CellDecorator() {
 void CellDecorator::collect(Character * character){
 	cell->collect(character);
 }
+
+Cell * CellDecorator::getNeighbour(Character* character, string direction) {
+	return cell->getNeighbour(character, direction);
+}
+
 bool CellDecorator::collectable(Character * character){
 	return cell->collectable(character);
 }

@@ -14,8 +14,10 @@
 #include "passage.h"
 #include "door.h"
 #include "item.h"
+#include "cell.h"
 #include <string>
 #include <math.h>
+#include "potion.h"
 #include <iostream>
 
 using namespace std;
@@ -96,7 +98,22 @@ void Player::defeated() {
 }
 
 void Player::usePotion(string direction) {
-
+	// find cell of player
+	Cell * playerCell = location;
+	// find potion's cell based on player's cell
+	Cell * potionCell = playerCell->getNeighbour(this,direction);
+	// // find potion based on cell
+	Entity * potion = NULL;
+	if (potionCell) {
+		potion = potionCell->getEntity();
+	}
+	// use potion
+	if (potion) {
+		potion->used(this);
+		potionCell->cellObject = NULL;
+		textMap->notify(potionCell->getY(), potionCell->getX(), potionCell->getSelf());
+	}
+	delete potion;
 }
 
 void Player::collect(Entity * collectGold) {
@@ -111,12 +128,22 @@ int Player::score() {
 }
 
 void Player::heal(int healAmount) {
-	if ((HP + healAmount) < maxHP ){
-		HP += healAmount;
+	if (healAmount > 0) {
+		if ((HP + healAmount) < maxHP ){
+			HP += healAmount;
+		}
+		else {
+			HP = maxHP;
+		}
 	}
 	else {
-		HP = healAmount;
-	}
+		if ((HP + healAmount) > 0) {
+			HP += healAmount;
+		}
+		else {
+			HP = healAmount;
+		}
+	}	
 }
 
 void Player::endTurn() {

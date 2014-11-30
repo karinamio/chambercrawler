@@ -5,15 +5,15 @@
 
 using namespace std;
 
-Troll::Troll() {
+Troll::Troll(Info *newInfo, Map* textMap) {
 	HP = 120;
 	maxHP = 120;
 	Atk = 25;
 	Def = 15;
-	gold = new Gold;
-	info = Board->info;
+	gold = new Gold(10);
+	info = newInfo;
 	type = "Troll";
-	instance = Player->instance;
+	this->textMap = textMap;
 }
 
 void Troll::endTurn() {

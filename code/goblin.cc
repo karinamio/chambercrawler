@@ -5,15 +5,16 @@
 
 using namespace std;
 
-Goblin::Goblin() {
+Goblin::Goblin(Info *newInfo, Map* textMap) {
 	HP = 110;
 	maxHP = 110;
 	Atk = 15;
 	Def = 20;
-	gold = new Gold;
-	info = Board->info;
+	gold = new Gold(10);
+	info = newInfo;
 	type = "Goblin";
-	instance = Player->instance;
+	self = '@';
+	this->textMap = textMap;
 }
 
 void Goblin::attack() {

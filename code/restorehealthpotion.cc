@@ -1,5 +1,8 @@
 #include "potion.h"
+#include "character.h"
 #include "restorehealthpotion.h"
+
+#include <iostream>
 
 using namespace std;
 
@@ -8,10 +11,14 @@ RestoreHealthPotion::RestoreHealthPotion() {
 	Atk = 0;
 	Def = 0;
 	permanent = true;
+	self = 'P';
 }
 
 void RestoreHealthPotion::used(Character * character) {
-// restores up to 10HP without exceeding maximum prescribed by the race
+	cout << character->getHP() << endl;
+	character->heal(10);
+	cout << "restored" << endl;
+	cout << character->getHP() << endl;
 }
 
 RestoreHealthPotion::~RestoreHealthPotion() {
