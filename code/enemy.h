@@ -1,7 +1,7 @@
 #ifndef __ENEMY_H__
 #define __ENEMY_H__
 #include "character.h"
-class Enemy : class Character {
+class Enemy : public Character {
 protected:
 	int chamberID;
 	int ID;
@@ -12,6 +12,7 @@ public:
 	virtual void defeated();
 	virtual bool attackable();
 	virtual bool hostileEnemy();
+	bool moveOut(Cell *cell);
 	Character * createEnemy();
 };
 

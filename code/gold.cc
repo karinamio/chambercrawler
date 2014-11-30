@@ -1,5 +1,7 @@
 #include "gold.h"
-#include "dragonhoard.h"
+#include <time.h>
+#include <cstdlib>
+// #include "dragonhoard.h"
 
 using namespace std;
 
@@ -22,17 +24,18 @@ Gold::Gold(int i){
 	}
 	else if (i == 10){
 		value = 0;
-		type = "player"
+		type = "player";
 	}
+	self = 'G';
 }
 bool Gold::takesSpace() {
 	return false;
 }
 
 bool Gold::takesSpace(Character * character) {
-	if (character->moveOut()) {
-		return false;
-	}
+	// if (character->moveOut()) {
+	// 	return false;
+	// }
 		return true;
 }
 
@@ -41,14 +44,15 @@ bool Gold::collectable(){
 }
 
 void Gold::collect(Character *player) {
-	player->collect(value);
+	// player->collect(value);
 }
 
 Item * Gold::createGold() {
-	int random = random(3);
+	srand(time(NULL));
+	int random = rand()%3;
 	if (random == 2) {
-		Item * newGold = new DragonHoard();
-		return newGold;
+		// Item * newGold = new DragonHoard();
+		// return newGold;
 	}
 	else {
 		Item * newGold = new Gold(random);

@@ -21,6 +21,8 @@ class CellDecorator : public Cell {
 		void addNeighbour(Cell *neighbour);
 		Cell* playerInRange();
 		void moved(Character *);
+		char getSelf();
+		
 		Cell* randomMoveableCell();
 		CellDecorator(Cell * cell);
 		~CellDecorator();

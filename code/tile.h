@@ -2,7 +2,7 @@
 #define __TILE_H__
 
 #include "cell.h"
-
+#include "celldecorator.h"
 class Tile : public CellDecorator {
 	protected:
 		Cell * cell;
@@ -14,6 +14,7 @@ class Tile : public CellDecorator {
 		bool attackable();
 		bool useable();
 		void use();
+		char getSelf();
 };
 
 #endif

@@ -1,17 +1,15 @@
 #include <string>
-
+#include <iostream>
 #include "cell.h"
 #include "celldecorator.h"
 #include "wall.h"
 
 using namespace std;
-
-Wall::Wall(Cell * cell, char i) : CellDecorator(cell), self(i) {
-	textMap->notify(y,x,self);
+char Wall::getSelf(){
+	return self;
 }
-
-bool Wall::isMovable(string type) {
-	return false;
+Wall::Wall(Cell * cell, char i) : CellDecorator(cell), self(i) {
+	textMap->notify(y,x,i);
 }
 
 

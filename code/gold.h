@@ -5,7 +5,6 @@
 #include "character.h"
 class Gold: public Item{
 protected:
-	static char self = 'G';
 	int value;
 	std::string type;
 public:
@@ -16,6 +15,6 @@ public:
 	Item* createGold();
 	void addGold(int);
 	int getValue();
-
+	Gold(int);
 };
 #endif

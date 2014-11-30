@@ -16,7 +16,7 @@ protected:
 public:
 	virtual bool movable(Character * character) = 0;
 	virtual Cell *neighbourMovable(Character* Character, std::string) = 0;
-	virtual void notify (int x, int y, char update) = 0;
+	// virtual void notify (int x, int y, char update) = 0;
 	virtual bool attackable() = 0;
 	virtual void setEntity(Entity * entity) = 0;
 	virtual bool useable() = 0;
@@ -27,6 +27,13 @@ public:
 	virtual Cell* playerInRange() = 0;
 	virtual Cell* randomMoveableCell() = 0;
 	virtual ~Cell() = 0;
+	virtual int getX();
+	virtual int getY();
+	virtual int getNumNeighbours();
+	virtual Cell** getNeighbours();
+	virtual Map* getTextMap();
+	virtual Entity * getEntity();
+	virtual char getSelf() = 0;
 };
 
 #endif

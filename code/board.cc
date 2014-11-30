@@ -6,7 +6,7 @@
 #include <iostream>
 
 using namespace std;
-
+Board *Board::instance = NULL;
 Board::Board():floorLevel(1){
 	info = new Info;
 	map = new Map;
@@ -23,12 +23,12 @@ Board * Board::getBoard(){
 }
 
 Floor *Board::createFloor(){
-	Floor *newFloor = new Floor(map, player);
+	Floor *newFloor = new Floor(map,info, player);
 	return newFloor;
 }
 
 Character * Board::createPlayer(){
-	// Character *newPlayer = new Player;
+	// Character *newPlayer = Player::getPlayer(info);
 	// return newPlayer;
 	return NULL;
 }
@@ -57,7 +57,7 @@ Board::~Board(){
 
 void Board::startGame(){
 	this->player = NULL;
-	this->floor = new Floor(map, player);
+	this->floor = new Floor(map,info, player);
 
 	this->floorLevel = 1;
 	string command;

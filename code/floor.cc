@@ -2,6 +2,9 @@
 #include "cell.h"
 #include <time.h>
 #include <cstdlib>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 #include <string>
 #include "cell.h"
 #include "passage.h"
@@ -10,13 +13,11 @@
 #include "wall.h"
 #include "door.h"
 #include "chamber.h"
+#include "plaincell.h"
+#include "player.h"
 using namespace std;
 
 class Cell;
-const int NUM_CHAMBERS = 5;
-const int MAP_HEIGHT = 25;
-const int MAP_WIDTH = 79;
-
 
 Floor::~Floor() {
 	for(int i = 0; i < MAP_HEIGHT; i++){
@@ -24,48 +25,48 @@ Floor::~Floor() {
 			delete cell[i][j];
 		}
 	}
-	delete cell;
-	delete [] chambers;
+	// delete []cell;
+	// delete [] chambers;
 }
 
-}
+
 void Floor::playerDied(){
 	
 }
 
-int randomChamber(){
-	int randomChamber;
+int Floor::randomChamber(){
+	int randomCh;
 	srand (time(NULL));
-	randomChamber = rand() % 5;
-	return randomChamber;
+	randomCh = rand() % 5;
+	return randomCh;
 }
 
 void Floor::spawnCharacter() {
-	int randomChamber = randomChamber();
-	playerInitialChamber = randomChamber;
-	chambers[randomChamber]->spawnPlayer(player);
+	int randomCh = randomChamber();
+	playerInitialChamber = randomCh;
+	// chambers[randomCh]->spawnPlayer(player);
 }
 
 void Floor::spawnStair() {
-	int randomChamber;
-	while((randomChamber = randomChamber()) == playerInitialChamber){
+	// int randomChamberNum;
+	// while((randomChamberNum = randomChamber()) == playerInitialChamber){
 
-	}
-	chambers[randomChamber]->spawnStair();
+	// }
+	// chambers[randomChamberNum]->spawnStair();
 }
 
 void Floor::spawnEnemies() {
-	for(int i = 0; i < 5; i++){
-		enemies[i] = chambers[i]->spawnEnemies();
-	}
+	// for(int i = 0; i < 5; i++){
+	// 	enemies[i] = chambers[i]->spawnEnemies();
+	// }
 }
 
 void enemyDied(int chamber, int enemyID) {
-	delete enemies[chamber][enemyID];
-	enemies[chamber][enemyID] = NULL;
+	// delete enemies[chamber][enemyID];
+	// enemies[chamber][enemyID] = NULL;
 }
 
-Floor::Floor(Map* textMap, Character* player): textMap(textMap), player(player) {
+Floor::Floor(Map* textMap,Info* info, Character* player): textMap(textMap), player(player), info(info) {
 	int randomChamber;
 	for(int i = 0; i < MAP_HEIGHT; i++){
 		for(int j = 0; j < MAP_WIDTH; j++){
@@ -100,7 +101,7 @@ Floor::Floor(Map* textMap, Character* player): textMap(textMap), player(player) 
 			}
 		}
 	}
-	decorateCells();
+	decorateCells(false, "hi");
 	// chambers[0] = new Chamber(this,cell, 0);
 	// chambers[1] = new Chamber(this,cell, 1);
 	// chambers[2] = new Chamber(this,cell, 2);
@@ -112,43 +113,60 @@ Floor::Floor(Map* textMap, Character* player): textMap(textMap), player(player) 
 
 void Floor::decorateCells(bool different, std::string fileName){
 
-	string fName = "board.txt";
+	string fName = "b.txt";
 	if (different){
 		fName = fileName;
 	}
 
 	int x = 0;
 	int y = 0;
-	int counteri = 0;
-	int counterj = 0;
+	int counti = 0;
+	int countj = 0;
 	string line;
 	string linez;
 	char c;
+	int count = 0;
 	ifstream file(fName.c_str());
 	while (getline(file,line)) {
-		while (file >> noskipws >> c) {
+		// cout<<counti<<endl;
+		stringstream ss(line);
+		while (ss>> noskipws >> c) {
+			// cout<<c;
+			// cout<<cell[counti][countj]->getY()<<"   "<<cell[counti][countj]->getX()<<endl;
 			switch (c){
 				case '.':
 					cell[counti][countj] = new Tile(cell[counti][countj]);
 					break;
 				case '|':
+				// cout<<"hi"<<endl;
+				
 					cell[counti][countj] = new Wall(cell[counti][countj],'|');
 					break;
 				case '-':
+
 					cell[counti][countj] = new Wall(cell[counti][countj],'-');
 					break;	
 				case '#':
 					cell[counti][countj] = new Passage(cell[counti][countj]);
 					break;
 				case '+':
-					cell[counti][countj] = new Door(cell[counti][countj],'|');
+					cell[counti][countj] = new Door(cell[counti][countj]);
 					break;
 				case '/':
-					cell[counti][countj] = new Stair(cell[counti][countj],'|');
+					cell[counti][countj] = new Stair(cell[counti][countj]);
 					break;
+				case '@':
+					cell[counti][countj] = new Tile(cell[counti][countj]);
+					player = Player::getPlayer(info);
+					cell[counti][countj]->setEntity(player);
+
 			}
-			++ counterj;
+			++ countj;
+			++ count;
 		}
-		++ counteri;
+		// cout<<endl;
+		countj = 0;
+		++ counti;
+		// cout<<count;
 	}
 }

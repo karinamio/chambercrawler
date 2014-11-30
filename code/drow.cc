@@ -16,13 +16,6 @@ Drow::Drow() {
 	instance = Player->instance;
 }
 
-void Drow::attack() {
-
-}
-
-void Drow::attackBy() {
-
-}
 
 void Drow::usePotion() {
 	// all potions have their effect magnified by 1.5

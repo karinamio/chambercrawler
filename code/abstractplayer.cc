@@ -2,6 +2,6 @@
 
 using namespace std;
 
- ~AbstractPlayer(){
+ AbstractPlayer::~AbstractPlayer(){
  	
  }

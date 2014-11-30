@@ -1,10 +1,19 @@
 #include <string>
-
+#include <iostream>
+#include "plaincell.h"
 #include "celldecorator.h"
 
 using namespace std;
 
-CellDecorator::CellDecorator(Cell * cell) : cell(cell) {}
+CellDecorator::CellDecorator(Cell * cell) : cell(cell) {
+	this->cellObject = this->cell->getEntity();
+	this->textMap = this->cell->getTextMap();
+		// cell->getTextMap()->print();
+	this->neighbours = this->cell->getNeighbours();
+	this->numNeighbours = this->cell->getNumNeighbours();
+	this->x = cell->getX();
+	this->y = cell->getY();
+}
 
 CellDecorator::~CellDecorator() {
 	delete cell;
@@ -33,12 +42,13 @@ bool CellDecorator::useable(){
 void CellDecorator::use(){
 	cell->use();
 }
-void CellDecorator::addNeighbour(PlainCell *neighbour){
+void CellDecorator::addNeighbour(Cell *neighbour){
 	cell->addNeighbour(neighbour);
 }
 
 void CellDecorator::moved(Character *character){
-	setEntity(character);
+	// Entity * entity = character;
+	// cell->setEntity(entity);
 }
 
 Cell* CellDecorator::playerInRange(){
@@ -47,4 +57,8 @@ Cell* CellDecorator::playerInRange(){
 
 Cell* CellDecorator::randomMoveableCell(){
 	return cell->randomMoveableCell();
+}
+
+char CellDecorator::getSelf(){
+	return cell->getSelf();
 }
