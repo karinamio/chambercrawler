@@ -6,7 +6,7 @@
 #include "player.h"
 using namespace std;
 
-Shade::Shade(Info *newInfo) {
+Shade::Shade(Info *newInfo, Map* textMap) {
 	HP = 110;
 	maxHP = 110;
 	Atk = 15;
@@ -15,6 +15,7 @@ Shade::Shade(Info *newInfo) {
 	info = newInfo;
 	type = "Shade";
 	self = '@';
+	this->textMap = textMap;
 
 }
 int Shade::score() {

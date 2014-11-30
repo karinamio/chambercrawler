@@ -4,7 +4,8 @@
 #include "board.h"
 #include <cstdlib>
 #include <iostream>
-
+#include "character.h"
+#include "player.h"
 using namespace std;
 Board *Board::instance = NULL;
 Board::Board():floorLevel(1){
@@ -28,9 +29,9 @@ Floor *Board::createFloor(){
 }
 
 Character * Board::createPlayer(){
-	// Character *newPlayer = Player::getPlayer(info);
-	// return newPlayer;
-	return NULL;
+	Character *newPlayer = Player::getPlayer(info, map);
+	return newPlayer;
+
 }
 
 void Board::cleanup(){
@@ -56,14 +57,14 @@ Board::~Board(){
 }	
 
 void Board::startGame(){
-	this->player = NULL;
+	this->player = createPlayer();
 	this->floor = new Floor(map,info, player);
 
 	this->floorLevel = 1;
 	string command;
 	while (cin >> command) {
 		if (command == "no" || command == "so" || command == "ea" || command == "we" || command == "ne" || command == "nw" || command == "se" || command == "sw" ) {
-			// this->player->move(command);
+			this->player->move(command);
 		}
 		else if (command == "u") {
 			string direction;

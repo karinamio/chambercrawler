@@ -3,6 +3,8 @@
 #include "cell.h"
 #include "celldecorator.h"
 #include "door.h"
+#include "entity.h"
+#include "character.h"
 
 using namespace std;
 char Door::self;
@@ -12,7 +14,10 @@ Door::Door(Cell * cell) : CellDecorator(cell) {
 }
 
 bool Door::movable(Character * character){
-	// return character->moveOut(this);
+	if(cellObject){
+		return cellObject->takesSpace();
+	}
+	return character->moveOut(this);
 }
 
 char Door::getSelf(){

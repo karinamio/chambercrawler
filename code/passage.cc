@@ -3,6 +3,8 @@
 #include "cell.h"
 #include "celldecorator.h"
 #include "passage.h"
+#include "entity.h"
+#include "character.h"
 
 using namespace std;
 char Passage::self;
@@ -13,9 +15,10 @@ Passage::Passage(Cell * cell) : CellDecorator(cell) {
 
 bool Passage::movable(Character * character){
 	if(cellObject){
-		// return cellObject->takesSpace();
+		return cellObject->takesSpace();
 	}
-	return false;
+	return character->moveOut(this);
+;
 }
 char Passage::getSelf(){
 	return self;

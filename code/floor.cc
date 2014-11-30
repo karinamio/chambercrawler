@@ -15,6 +15,7 @@
 #include "chamber.h"
 #include "plaincell.h"
 #include "player.h"
+#include "gold.h"
 using namespace std;
 
 class Cell;
@@ -73,34 +74,7 @@ Floor::Floor(Map* textMap,Info* info, Character* player): textMap(textMap), play
 			cell[i][j] = new PlainCell(textMap, j, i);
 		}
 	}
-	for(int i = 0; i < MAP_HEIGHT; ++i){
-		for(int j = 0; j < MAP_WIDTH; ++j){
-			if (i != 0){
-				cell[i][j]->addNeighbour(cell[i-1][j]);
-			}
-			if (i != MAP_HEIGHT-1){
-				cell[i][j]->addNeighbour(cell[i+1][j]);
-			}
-			if (j != 0){
-				cell[i][j]->addNeighbour(cell[i][j-1]);
-			}
-			if (j != MAP_WIDTH-1){
-				cell[i][j]->addNeighbour(cell[i][j+1]);
-			}
-			if (i != 0 && j != 0){
-				cell[i][j]->addNeighbour(cell[i-1][j-1]);
-			}
-			if (i != 0 && j != MAP_WIDTH-1){
-				cell[i][j]->addNeighbour(cell[i-1][j+1]);
-			}
-			if (i != MAP_HEIGHT-1 && j != 0){
-				cell[i][j]->addNeighbour(cell[i+1][j-1]);
-			}
-			if (i != MAP_HEIGHT-1 && j != MAP_WIDTH-1){
-				cell[i][j]->addNeighbour(cell[i+1][j+1]);
-			}
-		}
-	}
+
 	decorateCells(false, "hi");
 	// chambers[0] = new Chamber(this,cell, 0);
 	// chambers[1] = new Chamber(this,cell, 1);
@@ -126,6 +100,7 @@ void Floor::decorateCells(bool different, std::string fileName){
 	string linez;
 	char c;
 	int count = 0;
+	Entity * nGold = NULL;
 	ifstream file(fName.c_str());
 	while (getline(file,line)) {
 		// cout<<counti<<endl;
@@ -157,9 +132,35 @@ void Floor::decorateCells(bool different, std::string fileName){
 					break;
 				case '@':
 					cell[counti][countj] = new Tile(cell[counti][countj]);
-					player = Player::getPlayer(info);
+					player = Player::getPlayer(info, textMap);
+					player->location = cell[counti][countj];
 					cell[counti][countj]->setEntity(player);
-
+					break;
+				case '6':
+					cell[counti][countj] = new Tile(cell[counti][countj]);
+					nGold = new Gold(0);
+					cell[counti][countj]->setEntity(nGold);
+					cell[counti][countj]->cellObject = nGold;
+					// if(cell[counti][countj]->cellObject->collectable()){
+					// 	cout<<"damn2";
+					// }
+					// if(cell[counti][countj]->getEntity()){
+					// 	cout<<"damn";
+					// }
+					
+					break;
+				case '7':
+					cell[counti][countj] = new Tile(cell[counti][countj]);
+					nGold = new Gold(1);
+					cell[counti][countj]->setEntity(nGold);
+					cell[counti][countj]->cellObject = nGold;
+					break;
+				case '8':
+					cell[counti][countj] = new Tile(cell[counti][countj]);
+					nGold = new Gold(4);
+					cell[counti][countj]->setEntity(nGold);
+					cell[counti][countj]->cellObject = nGold;
+					break;
 			}
 			++ countj;
 			++ count;
@@ -168,5 +169,34 @@ void Floor::decorateCells(bool different, std::string fileName){
 		countj = 0;
 		++ counti;
 		// cout<<count;
+	}
+
+		for(int i = 0; i < MAP_HEIGHT; ++i){
+		for(int j = 0; j < MAP_WIDTH; ++j){
+			if (i != 0){
+				cell[i][j]->addNeighbour(cell[i-1][j]);
+			}
+			if (i != MAP_HEIGHT-1){
+				cell[i][j]->addNeighbour(cell[i+1][j]);
+			}
+			if (j != 0){
+				cell[i][j]->addNeighbour(cell[i][j-1]);
+			}
+			if (j != MAP_WIDTH-1){
+				cell[i][j]->addNeighbour(cell[i][j+1]);
+			}
+			if (i != 0 && j != 0){
+				cell[i][j]->addNeighbour(cell[i-1][j-1]);
+			}
+			if (i != 0 && j != MAP_WIDTH-1){
+				cell[i][j]->addNeighbour(cell[i-1][j+1]);
+			}
+			if (i != MAP_HEIGHT-1 && j != 0){
+				cell[i][j]->addNeighbour(cell[i+1][j-1]);
+			}
+			if (i != MAP_HEIGHT-1 && j != MAP_WIDTH-1){
+				cell[i][j]->addNeighbour(cell[i+1][j+1]);
+			}
+		}
 	}
 }

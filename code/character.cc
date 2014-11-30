@@ -1,6 +1,7 @@
 #include "entity.h"
 #include "character.h"
 #include "gold.h"
+#include <string>
 using namespace std;
 
 bool Character::takesSpace() {
@@ -33,13 +34,18 @@ int Character::getAtk() {
 Character::~Character() {
 	// delete gold;
 }
-
+#include "gold.h"
+#include <iostream>
+using namespace std;
 void Character::addGold(int i){
 	this->gold->addGold(i);
 }	
 int Character::getValue(){
 	return -1;
 }
-void Character::move(){
+void Character::move(std::string nothing){
 
+}
+void Character::collect(Entity * a){
+cout<<"fk me"<<endl;
 }

@@ -5,12 +5,14 @@
 
 #include "cell.h"
 class Character;
+class Map;
 class Entity {
 protected:
 	int random(int);
-	Cell * location;
+	Map* textMap;
 	char self;
 public:
+	Cell * location;
 	virtual bool takesSpace();
 	virtual bool takesSpace(Character *);
 	virtual bool attackable() = 0;
