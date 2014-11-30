@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Troll::Troll(Info *newInfo, Map* textMap) {
+Troll::Troll(Info *newInfo, Map* textMap, Floor * currentFloor) {
 	HP = 120;
 	maxHP = 120;
 	Atk = 25;
@@ -14,6 +14,7 @@ Troll::Troll(Info *newInfo, Map* textMap) {
 	info = newInfo;
 	type = "Troll";
 	this->textMap = textMap;
+	this->currentFloor = currentFloor;
 }
 
 void Troll::endTurn() {

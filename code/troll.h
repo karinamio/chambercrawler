@@ -3,7 +3,7 @@
 #include "player.h"
 class Troll : public Player {
 public:
-	Troll(Info *, Map*);
+	Troll(Info *, Map*, Floor*);
 	void heal();
 	void endTurn();
 	void attack(Character * enemy);

@@ -3,7 +3,7 @@
 #include "enemy.h"
 class Halfling : public Enemy {
 public:
-	Halfling();
+	Halfling(Map *, int, Floor*);
 	void attack(Character * player);
 	void attackBy(Character * player);
 	~Halfing();

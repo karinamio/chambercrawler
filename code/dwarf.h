@@ -3,7 +3,7 @@
 #include "enemy.h"
 class Dwarf : public Enemy {
 public:
-	Dwarf();
+	Dwarf(Map *, int, Floor*);
 	void attack(Character * player);
 	void attackBy(Character * player);
 	~Dwarf();

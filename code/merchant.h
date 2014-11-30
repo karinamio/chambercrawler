@@ -5,7 +5,7 @@ class Merchant : public Enemy {
 protected:
 	bool hostile;
 public:
-	Merchant();
+	Merchant(Map *, int, Floor*);
 	void defeated();
 	void attack(Player * player);
 	void attackBy(Player * player);

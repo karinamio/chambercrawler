@@ -5,13 +5,16 @@
 
 using namespace std;
 
-Dragon::Dragon() {
+Dragon::Dragon(Map *textMap, int ID, Floor * currentFloor) {
 	HP = 150;
 	Atk = 20;
 	Def = 20;
 	gold = new Gold(6);
 	type = "Dragon";
 	self = 'D';
+	this->textMap = textMap;
+	this->ID = ID;
+	this->currentFloor = currentFloor;
 }
 
 void Dragon::move() {

@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Elf::Elf() {
+Elf::Elf(Map *textMap, int ID, Floor * currentFloor) {
 	HP = 140;
 	Atk = 30;
 	Def = 10;
@@ -15,6 +15,9 @@ Elf::Elf() {
 	gold = new Gold(rand()%2);
 	type = "Elf";
 	self = 'E';
+	this->textMap = textMap;
+	this->ID = ID;
+	this->currentFloor = currentFloor;
 }
 
 void Elf::attack(Character *enemy) {

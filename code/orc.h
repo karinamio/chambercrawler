@@ -3,7 +3,7 @@
 
 class Orc : public Enemy {
 public:
-	Orc();
+	Orc(Map *, int, Floor*);
 	void attack(Player * player);
 	void attackBy(Player * player);
 	~Orc();

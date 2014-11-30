@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Merchant::Merchant() {
+Merchant::Merchant(Map *textMap, int ID, Floor * currentFloor) {
 	hostile = false;
 	HP = 30;
 	Atk = 70;
@@ -16,6 +16,9 @@ Merchant::Merchant() {
 	gold = new Gold(rand()%2);
 	type = "Merchant";
 	self = 'M';
+	this->textMap = textMap;
+	this->ID = ID;
+	this->currentFloor = currentFloor;
 }
 
 void Merchant::defeated() {

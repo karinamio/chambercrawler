@@ -7,7 +7,7 @@
 
 using namespace std;
 
-Orc::Orc() {
+Orc::Orc(Map *textMap, int ID, Floor * currentFloor) {
 	HP = 180;
 	Atk = 30;
 	Def = 25;
@@ -15,6 +15,9 @@ Orc::Orc() {
 	gold = new Gold(rand()%2);
 	type = "Orc";
 	self = 'O';
+	this->textMap = textMap;
+	this->ID = ID;
+	this->currentFloor = currentFloor;
 }
 
 void Elf::attack() {

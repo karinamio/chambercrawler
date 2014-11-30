@@ -3,7 +3,7 @@
 #include "enemy.h"
 class Elf : public Enemy {
 public:
-	Elf();
+	Elf(Map *, int, Floor*);
 	void attack(Character * player);
 	void attackBy(Character * player);
 	~Elf();
