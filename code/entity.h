@@ -17,6 +17,7 @@ public:
 	virtual bool takesSpace(Character *);
 	virtual bool attackable() = 0;
 	virtual bool collectable() = 0;
+	virtual bool useable();
 	virtual bool isPlayer();
 	virtual ~Entity() = 0;
 	virtual void addGold(int) = 0;

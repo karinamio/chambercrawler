@@ -27,3 +27,7 @@ Entity::~Entity() {
 char Entity::identify(){
 	return self;
 }
+
+bool Entity::useable(){
+	return false;
+}

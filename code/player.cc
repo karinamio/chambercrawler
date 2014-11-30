@@ -68,6 +68,7 @@ void Player::move(string direction) {
 		}
 		cell->setEntity(this);
 		location->setEntity(NULL);
+		location->cellObject=NULL;
 		textMap->notify(location->getY(),location->getX(),location->getSelf());
 		location = cell;
 		cout<<"moved"<<endl;
@@ -102,7 +103,9 @@ void Player::usePotion(string direction) {
 
 void Player::collect(Entity * collectGold) {
 	gold->addGold(collectGold->getValue());
+	
 	cout<<"collected "<<collectGold->getValue()<<" gold!"<<endl;
+	delete collectGold;
 }
 
 int Player::score() {

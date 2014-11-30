@@ -1,9 +1,11 @@
 #include "entity.h"
 #include "character.h"
 #include "enemy.h"
-
+#include "floor.h"
+#include "human.h"
 #include <time.h>
 #include <cstdlib>
+#include <math.h>
 
 using namespace std;
 
@@ -11,24 +13,25 @@ Character * createEnemy() {
 	srand(time(NULL));
 	int random = rand() % 18;
 	Character * newEnemy = NULL;
-	if(random < 4){
-		newEnemy = new Human;
-	}
-	else if(random < 7){
-		newEnemy = new Dwarf;
-	}
-	else if(random < 12){
-		newEnemy = new Halfling;
-	}
-	else if(random < 14){
-		newEnemy = new Elf;
-	}
-	else if(random < 16){
-		newEnemy = new Orc;
-	}
-	else if(random < 18){
-		newEnemy = new Merchant;
-	}
+	newEnemy = new Human;
+	// if(random < 4){
+	// 	newEnemy = new Human;
+	// }
+	// else if(random < 7){
+	// 	newEnemy = new Dwarf;
+	// }
+	// else if(random < 12){
+	// 	newEnemy = new Halfling;
+	// }
+	// else if(random < 14){
+	// 	newEnemy = new Elf;
+	// }
+	// else if(random < 16){
+	// 	newEnemy = new Orc;
+	// }
+	// else if(random < 18){
+	// 	newEnemy = new Merchant;
+	// }
 	return newEnemy;
 }
 
@@ -37,10 +40,10 @@ bool Enemy::hostileEnemy() {
 }
 
 void Enemy::move() {
-	Character * possiblePlayer = location->playerInRange();
+	Character * possiblePlayer = dynamic_cast<Character *> (location->playerInRange()->getEntity());
 	Cell * possibleMove;
 	if(possiblePlayer && this->hostileEnemy()) {
-		this.attack(possiblePlayer);
+		this->attack(possiblePlayer);
 	}
 	else {
 		possibleMove = location->randomMoveableCell();
@@ -56,18 +59,18 @@ void Enemy::move() {
 }
 
 void Enemy::attack(Character * player) {
-	player.attackBy(this);
+	player->attackBy(this);
 }
 
 void Enemy::attackBy(Character * player) {
-	HP -= ceil((100/(100+this.getDef()))*enemy->getAtk());
+	HP -= ceil((100/(100+this->getDef()))*player->getAtk());
 		if (HP <= 0){
-			this.defeated();
+			this->defeated();
 		}
 }
 
 void Enemy::defeated() {
-	floor->enemyDied(chamberID, ID);
+	// floor->enemyDied(chamberID, ID);
 }
 
 bool Enemy::attackable() {
@@ -79,4 +82,8 @@ bool Enemy::moveOut(Cell * cell) {
 }
 
 Enemy::~Enemy() {
+}
+
+Enemy::Enemy(){
+
 }

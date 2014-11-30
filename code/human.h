@@ -5,8 +5,6 @@ class Human : public Enemy {
 public:
 	Human();
 	void defeated();
-	void attack(Player * player);
-	void attackBy(Player * player);
 	~Human();
 };
 

@@ -16,6 +16,8 @@
 #include "plaincell.h"
 #include "player.h"
 #include "gold.h"
+#include "enemy.h"
+#include "human.h"
 using namespace std;
 
 class Cell;
@@ -161,6 +163,16 @@ void Floor::decorateCells(bool different, std::string fileName){
 					cell[counti][countj]->setEntity(nGold);
 					cell[counti][countj]->cellObject = nGold;
 					break;
+				case '9':
+					//dragon hoard
+					break;
+				case 'H':
+					cell[counti][countj] = new Tile(cell[counti][countj]);
+					enemies[0] = new Human;
+					cell[counti][countj]->setEntity(enemies[0]);
+					cell[counti][countj]->cellObject = enemies[0];
+					break;
+
 			}
 			++ countj;
 			++ count;
