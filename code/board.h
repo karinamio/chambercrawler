@@ -11,11 +11,13 @@ class Board{
 	Floor * floor;
 	Map * map;
 	Info * info;
+	bool playing;
 	int floorLevel;
 	static void cleanup();
 public:
 	Board();
 	void startGame();
+	void gameOver();
 	// static Board *getInstance();
 	Floor * createFloor();
 	Character * createPlayer();

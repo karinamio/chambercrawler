@@ -9,6 +9,15 @@
 
 using namespace std;
 char Tile::self;
+bool Tile::movable(){
+	if (cellObject){
+		if(cellObject->isGold()){
+			return false;
+		}
+		return cellObject->takesSpace();
+	}
+	return true;
+}
 Tile::Tile(Cell * cell) : CellDecorator(cell) {
 	self = '.';
 	textMap->notify(y,x,self);
@@ -18,9 +27,13 @@ char Tile::getSelf(){
 	return self;
 }
 bool Tile::movable(Character * character){
-	if(cellObject){
-
-		return cellObject->takesSpace(character);
+	if (cellObject){
+		if (character->isPlayer()){
+			if(cellObject->isGold()){
+				return true;
+			}
+		}
+		return false;
 	}
 	return true;
 }

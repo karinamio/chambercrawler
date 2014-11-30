@@ -92,6 +92,80 @@ Cell *PlainCell::neighbourMovable(Character* character, string direction){
 	}
 	return neighbour;
 }
+
+
+Cell *PlainCell::neighbourAttackable(Character* character, string direction){
+	Cell *neighbour = NULL;
+	// cout<<"x: "<< x<<endl;
+	// cout<<"y: "<< y<<endl;
+	for (int i = 0; i < numNeighbours; i++){
+		
+		// cout<<"x: "<<i<<"  "<< neighbours[i]->getX()<<endl;
+		// cout<<"y: "<<i<<"  "<< neighbours[i]->getY()<<endl;
+		if (direction == "no"){
+			if (neighbours[i]->getX() == x && neighbours[i]->getY() == y-1){
+				if (neighbours[i]->cellObject && neighbours[i]->cellObject->attackable()){
+					neighbour = neighbours[i];
+				}	
+			}
+		}
+		else if (direction == "so"){
+			if (neighbours[i]->getX() == x && neighbours[i]->getY() == y+1){
+				if (neighbours[i]->cellObject && neighbours[i]->cellObject->attackable()){
+					neighbour = neighbours[i];
+				}	
+			}
+		}
+		else if (direction == "ea"){
+			if (neighbours[i]->getX() == x+1 && neighbours[i]->getY() == y){
+				if (neighbours[i]->cellObject && neighbours[i]->cellObject->attackable()){
+					neighbour = neighbours[i];
+				}	
+			}
+		}
+		else if (direction == "we"){
+			if (neighbours[i]->getX() == x-1 && neighbours[i]->getY() == y){
+				if (neighbours[i]->cellObject && neighbours[i]->cellObject->attackable()){
+					neighbour = neighbours[i];
+				}	
+			}
+		}
+		else if (direction == "ne"){
+			if (neighbours[i]->getX() == x+1 && neighbours[i]->getY() == y-1){
+				if (neighbours[i]->cellObject && neighbours[i]->cellObject->attackable()){
+					neighbour = neighbours[i];
+				}	
+			}
+		}
+		else if (direction == "nw"){
+			if (neighbours[i]->getX() == x-1 && neighbours[i]->getY() == y-1){
+				if (neighbours[i]->cellObject && neighbours[i]->cellObject->attackable()){
+					neighbour = neighbours[i];
+				}	
+			}
+		}
+		else if (direction == "se"){
+			if (neighbours[i]->getX() == x+1 && neighbours[i]->getY() == y+1){
+				if (neighbours[i]->cellObject && neighbours[i]->cellObject->attackable()){
+					neighbour = neighbours[i];
+				}	
+			}
+		}
+		else if (direction == "sw"){
+			if (neighbours[i]->getX() == x-1 && neighbours[i]->getY() == y+1){
+				if (neighbours[i]->cellObject && neighbours[i]->cellObject->attackable()){
+					neighbour = neighbours[i];
+				}	
+			}
+		}
+
+	}
+	return neighbour;
+}
+
+
+
+
 bool PlainCell::attackable() {
 	return false;
 }
@@ -99,28 +173,41 @@ bool PlainCell::useable() {
 	return false;
 }
 Cell * PlainCell::playerInRange() {
+	// 	cout<<"x: "<< x<<endl;
+	// cout<<"y: "<< y<<endl;
+
 	for (int i = 0; i < numNeighbours; i++){
-		if (neighbours[i]->getEntity()){
-			// if(neighbours[i]->getEntity()->isPlayer()){
-			// 	return neighbours[i];
-			// }
+		// 		cout<<"x: "<<i<<"  "<< neighbours[i]->getX()<<endl;
+		// cout<<"y: "<<i<<"  "<< neighbours[i]->getY()<<endl;
+		if (neighbours[i]->cellObject){
+			if(neighbours[i]->cellObject->isPlayer()){
+				return neighbours[i];
+			}
 		}
-		return NULL;
+		
 	}
+	return NULL;
 }
 
 Cell * PlainCell::randomMoveableCell() {
 	srand(time(NULL));
 	int random;
-	bool moveable = false;
+	bool canMove = false;
 	int neighbourCount = 0;
 	Cell *moveableNeighbour = NULL;
-	// while (moveable == false && neighbourCount < numNeighbours){
-	// 	random = rand() % numNeighbours;
-	// 	movable = neighbours[random]->getEntity()->movable();
-	// 	neighbourCount ++;
-	// 	moveableNeighbour = neighbours[random];
-	// }
+	while (canMove == false && neighbourCount < numNeighbours){
+		random = rand() % numNeighbours;
+		if (neighbours[random]->getEntity()){
+			canMove = neighbours[random]->getEntity()->takesSpace();
+			moveableNeighbour = neighbours[random];
+		}
+		else{
+			canMove = neighbours[random]->movable();
+			moveableNeighbour = neighbours[random];
+		}
+		neighbourCount ++;
+		
+	}
 
 	return moveableNeighbour;
 }
@@ -128,7 +215,9 @@ Cell * PlainCell::randomMoveableCell() {
 PlainCell::~PlainCell() {
 
 }
-
+bool PlainCell::movable(){
+	return false;
+}
 PlainCell::PlainCell(Map* textMap, int x, int y) {
 	this->cellObject = NULL;
 	this->textMap = textMap;
@@ -149,7 +238,7 @@ void PlainCell::setEntity(Entity * entity) {
 	if(entity){
 		textMap->notify(y,x,entity->identify());
 	}
-	
+
 }
 void PlainCell::use() {
 	// cellObject->use(character);

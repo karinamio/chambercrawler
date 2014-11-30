@@ -6,7 +6,9 @@
 // #include "dragonhoard.h"
 
 using namespace std;
-
+bool Gold::isGold(){
+	return true;
+}
 Gold::Gold(int i){
 	if (i == 0){
 		value = 2;

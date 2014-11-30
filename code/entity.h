@@ -14,6 +14,7 @@ protected:
 public:
 	Cell * location;
 	virtual bool takesSpace();
+	virtual bool isGold();
 	virtual bool takesSpace(Character *);
 	virtual bool attackable() = 0;
 	virtual bool collectable() = 0;

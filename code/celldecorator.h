@@ -10,7 +10,9 @@ class CellDecorator : public Cell {
 	protected:
 		Cell * cell;
 	public:
+		bool movable();
 		bool movable(Character * character);
+		Cell *neighbourAttackable(Character* character, std::string direction);
 		Cell *neighbourMovable(Character*, std::string);
 		bool attackable();
 		void setEntity(Entity * entity);

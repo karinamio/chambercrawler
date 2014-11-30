@@ -7,6 +7,7 @@ protected:
 
 public:
 	bool movable(Character * character);
+	bool movable();
 	Cell *neighbourMovable(Character*, std::string);
 	bool attackable();
 	bool useable();
@@ -20,6 +21,7 @@ public:
 	Map* getTextMap();
 	void use();
 	~PlainCell();
+	Cell *neighbourAttackable(Character* character, std::string direction);
 	PlainCell(Map* textMap, int x, int y);
 };
 

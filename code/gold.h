@@ -15,6 +15,7 @@ public:
 	Item* createGold();
 	void addGold(int);
 	int getValue();
+	bool isGold();
 	Gold(int);
 };
 #endif

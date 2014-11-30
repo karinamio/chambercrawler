@@ -9,7 +9,7 @@ class Tile : public CellDecorator {
 		static char self;
 	public:
 		Tile(Cell * cell);
-		bool isMovable(std::string type);
+		bool movable();
 		bool movable(Character * character);
 		bool attackable();
 		bool useable();
