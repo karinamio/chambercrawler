@@ -25,6 +25,7 @@
 #include "poisonhealthpotion.h"
 #include "woundatkpotion.h"
 #include "wounddefpotion.h"
+#include "board.h"
 
 using namespace std;
 
@@ -42,7 +43,9 @@ Floor::~Floor() {
 
 
 void Floor::playerDied(){
-	
+	cout<<"You lose"<<endl;
+	exit(0);
+	// currentBoard->gameOver();
 }
 
 int Floor::randomChamber(){
@@ -71,14 +74,26 @@ void Floor::spawnEnemies() {
 	// 	enemies[i] = chambers[i]->spawnEnemies();
 	// }
 }
-
-void enemyDied(int chamber, int enemyID) {
-	// delete enemies[chamber][enemyID];
-	// enemies[chamber][enemyID] = NULL;
+void Floor::enemyMove(){
+	for (int i =0; i < enemyCount; ++i){
+		if(enemies[i]){
+			enemies[i]->move();
+		}
+	
+	}
+}
+void Floor::enemyDied(int enemyID) {
+	cout<<"Enemy ID "<<enemyID<<endl; 
+	enemies[enemyID]->location->setEntity(NULL);
+	enemies[enemyID]->location->cellObject=NULL;
+	textMap->notify(enemies[enemyID]->location->getY(),enemies[enemyID]->location->getX(),enemies[enemyID]->location->getSelf());
+	delete enemies[enemyID];
+	enemies[enemyID] = NULL;
 }
 
-Floor::Floor(Map* textMap,Info* info, Character* player): textMap(textMap), player(player), info(info) {
+Floor::Floor(Map* textMap,Info* info, Character* player, Board *currentBoard): textMap(textMap), player(player), info(info), enemyCount(0),currentBoard(currentBoard) {
 	int randomChamber;
+
 	for(int i = 0; i < MAP_HEIGHT; i++){
 		for(int j = 0; j < MAP_WIDTH; j++){
 			cell[i][j] = new PlainCell(textMap, j, i);
@@ -141,9 +156,10 @@ void Floor::decorateCells(bool different, std::string fileName){
 					break;
 				case '@':
 					cell[counti][countj] = new Tile(cell[counti][countj]);
-					player = Player::getPlayer(info, textMap);
+					player = Player::getPlayer(info, textMap, this);
 					player->location = cell[counti][countj];
 					cell[counti][countj]->setEntity(player);
+					cell[counti][countj]->cellObject = player;
 					break;
 				case '6':
 					cell[counti][countj] = new Tile(cell[counti][countj]);
@@ -218,9 +234,12 @@ void Floor::decorateCells(bool different, std::string fileName){
 					break;
 				case 'H':
 					cell[counti][countj] = new Tile(cell[counti][countj]);
-					enemies[0] = new Human;
+					enemies[enemyCount] = new Human(textMap, enemyCount, this);
+					enemies[enemyCount]->location = cell[counti][countj];
+					++ enemyCount;
 					cell[counti][countj]->setEntity(enemies[0]);
 					cell[counti][countj]->cellObject = enemies[0];
+
 					break;
 			}
 			++ countj;

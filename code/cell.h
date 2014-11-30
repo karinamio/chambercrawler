@@ -15,6 +15,8 @@ protected:
 public:
 	Entity * cellObject;
 	virtual bool movable(Character * character) = 0;
+	virtual bool movable() = 0;
+	virtual Cell *neighbourAttackable(Character* character, std::string direction) = 0;;
 	virtual Cell *neighbourMovable(Character* Character, std::string) = 0;
 	// virtual void notify (int x, int y, char update) = 0;
 	virtual bool attackable() = 0;

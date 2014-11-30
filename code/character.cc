@@ -14,7 +14,9 @@ bool Character::takesSpace() {
 bool Character::attackable() {
 	return true;
 }
+void Character::attack(string direction){
 
+}
 bool Character::collectable() {
 	return false;
 }
@@ -56,7 +58,7 @@ int Character::getValue(){
 	return -1;
 }
 
-void Character::move(std::string nothing){
+void Character::move(){
 
 }
 
