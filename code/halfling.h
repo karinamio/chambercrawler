@@ -1,11 +1,11 @@
 #ifndef __HALFLING_H__
 #define __HALFING_H__
-
+#include "enemy.h"
 class Halfling : public Enemy {
 public:
 	Halfling();
-	void attack(Player * player);
-	void attackBy(Player * player);
+	void attack(Character * player);
+	void attackBy(Character * player);
 	~Halfing();
 };
 

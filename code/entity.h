@@ -2,7 +2,9 @@
 #define __ENTITY_H__
 #include <time.h>
 #include <cstdlib>
-#include "character.h"
+
+#include "cell.h"
+class Character;
 class Entity {
 protected:
 	int random(int);

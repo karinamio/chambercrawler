@@ -14,9 +14,9 @@ Elf::Elf() {
 	type = "Elf";
 }
 
-void Elf::attack() {
+void Elf::attack(Character *enemy) {
 	// double attacks on every race except drow
 }
 
-void Elf::attackBy() {
+void Elf::attackBy(Character *enemy) {
 }

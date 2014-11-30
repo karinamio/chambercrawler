@@ -6,36 +6,50 @@
 #include "troll.h"
 #include "goblin.h"
 #include "drow.h"
+#include "gold.h"
+#include "floor.h"
+#include "wall.h"
+#include "stair.h"
+#include "tile.h"
+#include "passage.h"
+#include "door.h"
+#include "item.h"
 #include <string>
 #include <math.h>
 
 using namespace std;
 
-Player * Player::instance = NULL;
 
-Player * Player::getPlayer(int i) {
+
+Character * Player::instance = NULL;
+
+Player::Player(){
+	
+}
+
+Character * Player::getPlayer(Info* newInfo) {
 	if (!instance) {
-		instance = new Shade;
+		instance = new Shade(newInfo);
 	}
 	return instance;
 }
 
-Player * Player::setPlayer(int i) {
+Character * Player::setPlayer(int i, Info* newInfo) {
 	if (i == 0){
-		instance = new Shade;
+		instance = new Shade(newInfo);
 	}
-	else if (i == 1){
-		instance = new Vampire;
-	}
-	else if (i == 2){
-		instance = new Troll;
-	}
-	else if (i == 3){
-		instance = new Goblin;
-	}
-	else if (i == 4){
-		instance = new Drow;
-	}
+	// else if (i == 1){
+	// 	instance = new Vampire;
+	// }
+	// else if (i == 2){
+	// 	instance = new Troll;
+	// }
+	// else if (i == 3){
+	// 	instance = new Goblin;
+	// }
+	// else if (i == 4){
+	// 	instance = new Drow;
+	// }
 	return instance;
 }
 
@@ -48,11 +62,11 @@ void Player::move(string direction) {
 	Cell* cell;
 	cell=location->neighbourMovable(this, direction);
 	if (cell) {
-		if(cell->collectable()){
-			cell->collect(this);
+		if(cell->getEntity()->collectable()){
+			collect(cell->getEntity());
 		}
-		cell.setEntity(this);
-		location.setEntity(NULL);
+		cell->setEntity(this);
+		location->setEntity(NULL);
 		location = cell;
 	}
 }
@@ -60,14 +74,14 @@ void Player::move(string direction) {
 bool Player::isPlayer() {
 	return true;
 }
-void Player::attack(Enemy * enemy) {
-	enemy.attackBy(this);
+void Player::attack(Character* enemy) {
+	enemy->attackBy(this);
 }
 
-void Player::attackBy(Enemy * enemy) {
-	HP -= ceil((100/(100+this.getDef()))*enemy->getAtk());
+void Player::attackBy(Character* enemy) {
+	HP -= ceil((100/(100+this->getDef()))*enemy->getAtk());
 	if (HP <= 0){
-		this.defeated();
+		this->defeated();
 	}
 }
 
@@ -79,7 +93,7 @@ void Player::usePotion(string direction) {
 
 }
 
-void Player::collect(item * collectGold) {
+void Player::collect(Entity * collectGold) {
 	gold->addGold(collectGold->getValue());
 }
 

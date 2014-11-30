@@ -1,12 +1,12 @@
 #ifndef __TROLL_H__
 #define __TROLL_H__
-
+#include "player.h"
 class Troll : public Player {
 public:
 	Troll();
 	void endTurn();
-	void attack(Enemy * enemy);
-	void attackBy(Player * player);
+	void attack(Character * enemy);
+	void attackBy(Character * player);
 	~Troll();
 };
 

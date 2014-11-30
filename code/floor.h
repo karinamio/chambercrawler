@@ -6,6 +6,7 @@
 class FloorSection;
 class Cell;
 class Character;
+class Info;
 const int NUM_CHAMBERS = 5;
 const int MAP_HEIGHT = 25;
 const int MAP_WIDTH = 79;
@@ -19,20 +20,22 @@ class Floor{
 	Character *enemies[NUM_CHAMBERS][MAX_Enemies];
 	Cell *cell[MAP_HEIGHT][MAP_WIDTH];
 	Map * textMap;
+	Info *info;
 	Character *player;
 	int playerInitialChamber;
+	int randomChamber();
 
 
 public:
 	void spawnStair();
 	void spawnItems();
-	void spawnCharacter(Character *);
+	void spawnCharacter();
 	void spawnEnemies();
 	void decorateCells(bool different, std::string fileName);
 	void playerDied();
 	void enemyDied(int, int);
 	~Floor();
-	Floor(Map* textMap, Character* player);
+	Floor(Map* textMap,Info* info, Character* player);
 };
 
 #endif

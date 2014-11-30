@@ -74,7 +74,7 @@ bool Enemy::attackable() {
  return true;
 }
 
-void Enemy::moveOut(Cell * cell) {
+bool Enemy::moveOut(Cell * cell) {
 	return false;
 }
 

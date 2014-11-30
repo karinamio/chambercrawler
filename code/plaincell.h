@@ -7,7 +7,7 @@ protected:
 
 public:
 	bool movable(Character * character);
-	Cell *neighbourMovable(Character*, std::string)
+	Cell *neighbourMovable(Character*, std::string);
 	bool attackable();
 	bool useable();
 	bool collectable(Character *);
@@ -16,8 +16,11 @@ public:
 	Cell* playerInRange();
 	Cell* randomMoveableCell();
 	void setEntity(Entity * entity);
+	char getSelf();
+	Map* getTextMap();
 	void use();
 	~PlainCell();
+	PlainCell(Map* textMap, int x, int y);
 };
 
 #endif

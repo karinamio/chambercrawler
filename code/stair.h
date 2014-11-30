@@ -2,7 +2,7 @@
 #define __STAIR_H__
 
 #include "cell.h"
-
+#include "celldecorator.h"
 class Board;
 
 class Stair : public CellDecorator {
@@ -14,6 +14,7 @@ class Stair : public CellDecorator {
 		Stair(Cell * cell);
 		void moved(Character *);
 		bool movable(Character * character);
+		char getSelf();
 };
 
 #endif
