@@ -35,3 +35,7 @@ Item * Potion::createPotion() {
 Potion::~Potion() {
 	
 }
+
+bool Potion::useable(){
+	return true;
+}

@@ -1,5 +1,7 @@
 #include "gold.h"
+#include "character.h"
 #include <time.h>
+#include <iostream>
 #include <cstdlib>
 // #include "dragonhoard.h"
 
@@ -38,10 +40,12 @@ bool Gold::takesSpace() {
 }
 
 bool Gold::takesSpace(Character * character) {
-	// if (character->moveOut()) {
-	// 	return false;
-	// }
+
+	if (character->moveOut(location)) {
+
 		return true;
+	}
+		return false;
 }
 
 bool Gold::collectable(){
@@ -49,7 +53,8 @@ bool Gold::collectable(){
 }
 
 void Gold::collect(Character *player) {
-	// player->collect(value);
+	cout<<"da fk"<<endl;
+	player->collect(this);
 }
 
 Item * Gold::createGold() {

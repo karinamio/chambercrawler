@@ -19,6 +19,7 @@ protected:
 public:
 	Item * createPotion();
 	virtual void used(Character * character)=0;
+	bool useable();
 	virtual ~Potion();
 };
 

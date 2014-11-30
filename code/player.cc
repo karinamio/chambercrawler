@@ -16,6 +16,7 @@
 #include "item.h"
 #include <string>
 #include <math.h>
+#include <iostream>
 
 using namespace std;
 
@@ -25,16 +26,16 @@ Player::Player(){
 	
 }
 
-Character * Player::getPlayer(Info* newInfo) {
+Character * Player::getPlayer(Info* newInfo, Map* textMap) {
 	if (!instance) {
-		instance = new Shade(newInfo);
+		instance = new Shade(newInfo, textMap);
 	}
 	return instance;
 }
 
-Character * Player::setPlayer(int i, Info* newInfo) {
+Character * Player::setPlayer(int i, Info* newInfo, Map* textMap) {
 	if (i == 0){
-		instance = new Shade(newInfo);
+		instance = new Shade(newInfo, textMap);
 	}
 	// else if (i == 1){
 	// 	instance = new Vampire;
@@ -60,13 +61,20 @@ void Player::move(string direction) {
 	Cell* cell;
 	cell=location->neighbourMovable(this, direction);
 	if (cell) {
-		if(cell->getEntity()->collectable()){
-			collect(cell->getEntity());
+		if(cell->getEntity() && cell->getEntity()->collectable()){
+			this->collect(cell->getEntity());
 		}
 		cell->setEntity(this);
 		location->setEntity(NULL);
+		location->cellObject=NULL;
+		textMap->notify(location->getY(),location->getX(),location->getSelf());
 		location = cell;
+		cout<<"moved"<<endl;
 	}
+	else{
+		cout<<"cant move"<<endl;
+	}
+
 }
 
 bool Player::isPlayer() {
@@ -93,6 +101,9 @@ void Player::usePotion(string direction) {
 
 void Player::collect(Entity * collectGold) {
 	gold->addGold(collectGold->getValue());
+	
+	cout<<"collected "<<collectGold->getValue()<<" gold!"<<endl;
+	delete collectGold;
 }
 
 int Player::score() {

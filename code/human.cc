@@ -2,7 +2,7 @@
 #include "enemy.h"
 #include "character.h"
 #include "human.h"
-
+#include "gold.h"
 using namespace std;
 
 Human::Human() {
@@ -12,16 +12,13 @@ Human::Human() {
 	gold = new Gold(5);
 	info = Board->info;
 	type = "Human";
+	self = 'H';
 }
 
 void Human::defeated() {
 	// drops two piles of normal gold
 }
 
-void Human::attack() {
-
-}
-
-void Human::attackBy() {
+Human::~Human(){
 
 }

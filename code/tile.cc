@@ -1,8 +1,11 @@
 #include <string>
-
+#include <iostream>
 #include "cell.h"
 #include "celldecorator.h"
 #include "tile.h"
+#include "entity.h"
+#include "gold.h"
+#include "character.h"
 
 using namespace std;
 char Tile::self;
@@ -16,7 +19,8 @@ char Tile::getSelf(){
 }
 bool Tile::movable(Character * character){
 	if(cellObject){
-		// return cellObject->takesSpace(character);
+
+		return cellObject->takesSpace(character);
 	}
 	return true;
 }

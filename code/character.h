@@ -9,7 +9,7 @@ class Gold;
 class Info;
 class Floor;
 class Cell;
-
+class entity;
 class Character : public Entity {
 protected:
 	int HP;
@@ -28,12 +28,13 @@ public:
 	virtual bool moveOut(Cell * cell) = 0;
 	virtual int getDef();
 	virtual int getAtk();
+	virtual void collect(Entity *);
 	bool attackable();
 	bool collectable();
 	bool takesSpace();
 	void addGold(int);
 	int getValue();
-	virtual void move();
+	virtual void move(std::string);
 	virtual ~Character();
 };
 

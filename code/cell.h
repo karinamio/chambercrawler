@@ -7,13 +7,14 @@ class Character;
 class Entity;
 class Cell {
 protected:
-	Entity * cellObject;
+
 	Map * textMap;
 	Cell ** neighbours;
 	int numNeighbours;
 	int x;
 	int y;
 public:
+	Entity * cellObject;
 	virtual bool movable(Character * character) = 0;
 	virtual Cell *neighbourMovable(Character* Character, std::string) = 0;
 	// virtual void notify (int x, int y, char update) = 0;

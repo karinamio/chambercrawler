@@ -1,8 +1,11 @@
 #include "plaincell.h"
 #include <time.h>
 #include <cstdlib>
+#include <iostream>
 #include <string>
-
+#include "entity.h"
+#include "tile.h"
+#include "character.h"
 using namespace std;
 
 bool PlainCell::movable(Character * character){
@@ -11,8 +14,9 @@ bool PlainCell::movable(Character * character){
 
 bool PlainCell::collectable(Character * character){
 	if(cellObject){
-		// return cellObject->collectable();
+		return cellObject->collectable();
 	}
+	return false;
 	
 }
 void PlainCell::collect(Character * character){
@@ -22,7 +26,12 @@ void PlainCell::collect(Character * character){
 }
 Cell *PlainCell::neighbourMovable(Character* character, string direction){
 	Cell *neighbour = NULL;
+	// cout<<"x: "<< x<<endl;
+	// cout<<"y: "<< y<<endl;
 	for (int i = 0; i < numNeighbours; i++){
+		
+		// cout<<"x: "<<i<<"  "<< neighbours[i]->getX()<<endl;
+		// cout<<"y: "<<i<<"  "<< neighbours[i]->getY()<<endl;
 		if (direction == "no"){
 			if (neighbours[i]->getX() == x && neighbours[i]->getY() == y-1){
 				if (neighbours[i]->movable(character)){
@@ -138,10 +147,7 @@ void PlainCell::addNeighbour(Cell *neighbour) {
 void PlainCell::setEntity(Entity * entity) {
 	cellObject = entity;
 	if(entity){
-		// textMap->notify(y,x,entity->identify());
-	}
-	else{
-		textMap->notify(y,x,this->getSelf());
+		textMap->notify(y,x,entity->identify());
 	}
 	
 }

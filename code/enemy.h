@@ -6,6 +6,8 @@ protected:
 	int chamberID;
 	int ID;
 public:
+
+	Enemy();
 	virtual void move();
 	virtual void attack(Character * player);
 	virtual void attackBy(Character * player);
@@ -14,6 +16,7 @@ public:
 	virtual bool hostileEnemy();
 	bool moveOut(Cell *cell);
 	Character * createEnemy();
+	~Enemy();
 };
 
 #endif

@@ -17,7 +17,7 @@ class Floor{
 	FloorSection **passages;
 	FloorSection *cave;
 	std::list<Character *> moveQ;
-	Character *enemies[NUM_CHAMBERS][MAX_Enemies];
+	Character *enemies[NUM_CHAMBERS * MAX_Enemies];
 	Cell *cell[MAP_HEIGHT][MAP_WIDTH];
 	Map * textMap;
 	Info *info;

@@ -2,6 +2,7 @@
 #include <iostream>
 #include "plaincell.h"
 #include "celldecorator.h"
+#include "entity.h"
 
 using namespace std;
 
