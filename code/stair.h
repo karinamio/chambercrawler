@@ -9,7 +9,7 @@ class Stair : public CellDecorator {
 	protected:
 		Cell * cell;
 		Board * board;
-		static char self = '/';
+		static char self;
 	public:
 		Stair(Cell * cell);
 		void moved(Character *);

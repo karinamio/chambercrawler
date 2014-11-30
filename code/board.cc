@@ -1,8 +1,7 @@
 #include "map.h"
 #include "info.h"
-#include "player.h"
 #include "floor.h"
-
+#include "board.h"
 #include <cstdlib>
 #include <iostream>
 
@@ -12,15 +11,15 @@ Board::Board():floorLevel(1){
 	info = new Info;
 	map = new Map;
 }
-Board::getBoard(){
+Board * Board::getBoard(){
 	if(instance){
-		return instance;
 	}
 	else{
 		instance = new Board;
-		atexit(Board::cleanup());
-		return instance;
+		atexit(Board::cleanup);
+		
 	}
+	return instance;
 }
 
 Floor *Board::createFloor(){
@@ -29,8 +28,9 @@ Floor *Board::createFloor(){
 }
 
 Character * Board::createPlayer(){
-	Character *newPlayer = new Player;
-	return newPlayer;
+	// Character *newPlayer = new Player;
+	// return newPlayer;
+	return NULL;
 }
 
 void Board::cleanup(){
@@ -39,39 +39,41 @@ void Board::cleanup(){
 }
 
 void Board::stairsReached(){
-	if(this.floorLevel == 5){
-		cout<<"You Won!"
+	if(this->floorLevel == 5){
+		cout<<"You Won!";
 	}
 	else {
-		delete this.floor;
-		this.floor = createFloor();
-		this.floorLevel += 1;
+		delete this->floor;
+		this->floor = createFloor();
+		this->floorLevel += 1;
 	}
 	
 }
 Board::~Board(){
 	delete info;
-	delete player;
-}	delete map;
+	// delete player;
+	delete map;
+}	
 
 void Board::startGame(){
-	this.floor = createFloor();
-	this.player = createPlayer();
-	this.floorLevel = 1;
+	this->player = NULL;
+	this->floor = new Floor(map, player);
+
+	this->floorLevel = 1;
 	string command;
 	while (cin >> command) {
 		if (command == "no" || command == "so" || command == "ea" || command == "we" || command == "ne" || command == "nw" || command == "se" || command == "sw" ) {
-			this.player->move(command);
+			// this->player->move(command);
 		}
 		else if (command == "u") {
 			string direction;
 			cin >> direction;
-			this.player->usePotion(direction);
+			// this->player->usePotion(direction);
 		}
 		else if (command == "a") {
 			string direction;
 			cin >> direction;
-			this.player->attack(direction);
+			// this->player->attack(direction);
 		}
 		else if (command == "r") {
 			// reset errythang!!!!!!!
@@ -81,4 +83,8 @@ void Board::startGame(){
 			cout << "Player forfeited." << endl;
 			break;
 		}
+		else if (command == "p"){
+			map->print();
+		}
 	}
+}

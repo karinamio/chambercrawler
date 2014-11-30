@@ -6,9 +6,9 @@
 class Wall : public CellDecorator {
 	protected:
 		Cell * cell;
-		static char self = '|';
+		char self;
 	public:
-		Wall(Cell * cell);
+		Wall(Cell * cell, char i);
 		void setEntity(Entity * entity);
 		void use();
 };

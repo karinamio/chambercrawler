@@ -7,6 +7,7 @@ class Entity {
 protected:
 	int random(int);
 	Cell * location;
+	char self;
 public:
 	virtual bool takesSpace();
 	virtual bool takesSpace(Character *);
@@ -16,6 +17,7 @@ public:
 	virtual ~Entity() = 0;
 	virtual void addGold(int) = 0;
 	virtual int getValue() = 0;
+	virtual char identify();
 };
 
 #endif

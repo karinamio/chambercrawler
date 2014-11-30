@@ -1,20 +1,21 @@
 #ifndef __BOARD_H__
 #define __BOARD_H__
-
+#include "map.h"
+#include "info.h"
+#include "floor.h"
 class Character;
-class Floor;
-class Map;
-class Info;
 class Board{
 	static Board *instance;
-	void startGame();
+	
 	Character * player;
 	Floor * floor;
 	Map * map;
 	Info * info;
 	int floorLevel;
+	static void cleanup();
 public:
 	Board();
+	void startGame();
 	// static Board *getInstance();
 	Floor * createFloor();
 	Character * createPlayer();

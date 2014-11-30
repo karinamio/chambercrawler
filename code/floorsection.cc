@@ -8,7 +8,7 @@ using namespace std;
 
 int arr_index = 0;
 
-void getCoords(char character) {
+int FloorSection::getCoords(char character) {
 	int x = 0;
 	int y = 0;
 	int counter = 0;
@@ -42,8 +42,8 @@ void getCoords(char character) {
 		}
 	}
 	for (int i = 0; i < arr_index; i++) {
-		cout << coords[i] << " ";
+		// cout << coords[i] << " ";
 	}
-	cout << endl;
+	// cout << endl;
 	// return coords;
 }

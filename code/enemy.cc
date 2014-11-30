@@ -60,7 +60,7 @@ void Enemy::attack(Character * player) {
 }
 
 void Enemy::attackBy(Character * player) {
-	HP -= ceil((100/(100+Def))*enemy->getAtk());
+	HP -= ceil((100/(100+this.getDef()))*enemy->getAtk());
 		if (HP <= 0){
 			this.defeated();
 		}

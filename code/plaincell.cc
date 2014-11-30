@@ -24,14 +24,14 @@ Cell *PlainCell::neighbourMovable(Character* character, string direction){
 	Cell *neighbour = NULL;
 	for (int i = 0; i < numNeighbours; i++){
 		if (direction == "no"){
-			if (neighbours[i]->x = x && neighbours[i]->y = y+1){
+			if (neighbours[i]->x = x && neighbours[i]->y = y-1){
 				if (neighbours[i]->movable(character)){
 					neighbour = neighbours[i];
 				}	
 			}
 		}
 		else if (direction == "so"){
-			if (neighbours[i]->x = x && neighbours[i]->y = y-1){
+			if (neighbours[i]->x = x && neighbours[i]->y = y+1){
 				if (neighbours[i]->movable(character)){
 					neighbour = neighbours[i];
 				}
@@ -52,28 +52,28 @@ Cell *PlainCell::neighbourMovable(Character* character, string direction){
 			}
 		}
 		else if (direction == "ne"){
-			if (neighbours[i]->x = x+1 && neighbours[i]->y = y+1){
-				if (neighbours[i]->movable(character)){
-					neighbour = neighbours[i];
-				}
-			}
-		}
-		else if (direction == "nw"){
-			if (neighbours[i]->x = x-1 && neighbours[i]->y = y+1){
-				if (neighbours[i]->movable(character)){
-					neighbour = neighbours[i];
-				}
-			}
-		}
-		else if (direction == "se"){
 			if (neighbours[i]->x = x+1 && neighbours[i]->y = y-1){
 				if (neighbours[i]->movable(character)){
 					neighbour = neighbours[i];
 				}
 			}
 		}
-		else if (direction == "sw"){
+		else if (direction == "nw"){
 			if (neighbours[i]->x = x-1 && neighbours[i]->y = y-1){
+				if (neighbours[i]->movable(character)){
+					neighbour = neighbours[i];
+				}
+			}
+		}
+		else if (direction == "se"){
+			if (neighbours[i]->x = x+1 && neighbours[i]->y = y+1){
+				if (neighbours[i]->movable(character)){
+					neighbour = neighbours[i];
+				}
+			}
+		}
+		else if (direction == "sw"){
+			if (neighbours[i]->x = x-1 && neighbours[i]->y = y+1){
 				if (neighbours[i]->movable(character)){
 					neighbour = neighbours[i];
 				}
@@ -135,6 +135,13 @@ PlainCell::~PlainCell() {
 
 void setEntity(Entity * entity) {
 	cellObject = entity;
+	if(entity){
+		textMap->notify(y,x,entity->identify());
+	}
+	else{
+		textMap->notify(y,x,self);
+	}
+	
 }
 void use() {
 	cellObject->use(character);

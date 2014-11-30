@@ -6,7 +6,10 @@
 
 using namespace std;
 
-Passage::Passage(Cell * cell) : CellDecorator(cell) {}
+Passage::Passage(Cell * cell) : CellDecorator(cell) {
+	self = '#';
+	textMap->notify(y,x,self);
+}
 
 bool Stair::movable(Character * character){
 	if(cellObject){

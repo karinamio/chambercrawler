@@ -6,7 +6,10 @@
 
 using namespace std;
 
-Tile::Tile(Cell * cell) : CellDecorator(cell) {}
+Tile::Tile(Cell * cell) : CellDecorator(cell) {
+	self = ".";
+	textMap->notify(y,x,self);
+}
 
 
 bool Tile::movable(Character * character){

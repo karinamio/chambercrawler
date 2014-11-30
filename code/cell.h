@@ -3,6 +3,8 @@
 #include <string>
 #include "map.h"
 
+class Character;
+class Entity;
 class Cell {
 protected:
 	Entity * cellObject;

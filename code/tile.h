@@ -6,7 +6,7 @@
 class Tile : public CellDecorator {
 	protected:
 		Cell * cell;
-		static char self = '.';
+		static char self;
 	public:
 		Tile(Cell * cell);
 		bool isMovable(std::string type);

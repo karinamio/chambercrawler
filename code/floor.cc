@@ -2,7 +2,14 @@
 #include "cell.h"
 #include <time.h>
 #include <cstdlib>
-
+#include <string>
+#include "cell.h"
+#include "passage.h"
+#include "stair.h"
+#include "tile.h"
+#include "wall.h"
+#include "door.h"
+#include "chamber.h"
 using namespace std;
 
 class Cell;
@@ -10,22 +17,6 @@ const int NUM_CHAMBERS = 5;
 const int MAP_HEIGHT = 25;
 const int MAP_WIDTH = 79;
 
-class Floor {
-	FloorSection *chambers[NUM_CHAMBERS];
-	FloorSection *passages;
-	FloorSection *cave;
-	std::list<Character *> moveQ;
-	Character **enemies;
-	Cell *cell[MAP_HEIGHT][MAP_WIDTH];
-public:
-	void spawnStair();
-	void spawnItems();
-	void spawnCharacter(Character *);
-	Character ** spawnEnemies();
-	void decorateCells();
-	~Floor();
-	Floor();
-};
 
 Floor::~Floor() {
 	for(int i = 0; i < MAP_HEIGHT; i++){
@@ -35,8 +26,6 @@ Floor::~Floor() {
 	}
 	delete cell;
 	delete [] chambers;
-	delete passages;
-	delete cave;
 }
 
 }
@@ -111,11 +100,55 @@ Floor::Floor(Map* textMap, Character* player): textMap(textMap), player(player) 
 			}
 		}
 	}
-	chambers[0] = new Chamber(this,cell, 0);
-	chambers[1] = new Chamber(this,cell, 1);
-	chambers[2] = new Chamber(this,cell, 2);
-	chambers[3] = new Chamber(this,cell, 3);
-	chambers[4] = new Chamber(this,cell, 4);
-	passages = new Passage(cell);
-	cave = new Cave(cell);
+	decorateCells();
+	// chambers[0] = new Chamber(this,cell, 0);
+	// chambers[1] = new Chamber(this,cell, 1);
+	// chambers[2] = new Chamber(this,cell, 2);
+	// chambers[3] = new Chamber(this,cell, 3);
+	// chambers[4] = new Chamber(this,cell, 4);
+	// passages = new Passage(cell);
+	// cave = new Cave(cell);
+}
+
+void Floor::decorateCells(bool different, std::string fileName){
+
+	string fName = "board.txt";
+	if (different){
+		fName = fileName;
+	}
+
+	int x = 0;
+	int y = 0;
+	int counteri = 0;
+	int counterj = 0;
+	string line;
+	string linez;
+	char c;
+	ifstream file(fName.c_str());
+	while (getline(file,line)) {
+		while (file >> noskipws >> c) {
+			switch (c){
+				case '.':
+					cell[counti][countj] = new Tile(cell[counti][countj]);
+					break;
+				case '|':
+					cell[counti][countj] = new Wall(cell[counti][countj],'|');
+					break;
+				case '-':
+					cell[counti][countj] = new Wall(cell[counti][countj],'-');
+					break;	
+				case '#':
+					cell[counti][countj] = new Passage(cell[counti][countj]);
+					break;
+				case '+':
+					cell[counti][countj] = new Door(cell[counti][countj],'|');
+					break;
+				case '/':
+					cell[counti][countj] = new Stair(cell[counti][countj],'|');
+					break;
+			}
+			++ counterj;
+		}
+		++ counteri;
+	}
 }

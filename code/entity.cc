@@ -22,3 +22,7 @@ bool Entity::isPlayer() {
 
 Entity::~Entity() {
 }
+
+char Entity::identify(){
+	return self;
+}

@@ -6,7 +6,9 @@
 
 using namespace std;
 
-Wall::Wall(Cell * cell) : CellDecorator(cell) {}
+Wall::Wall(Cell * cell, char i) : CellDecorator(cell), self(i) {
+	textMap->notify(y,x,self);
+}
 
 bool Wall::isMovable(string type) {
 	return false;
