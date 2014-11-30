@@ -1,6 +1,8 @@
 #ifndef __CHARACTER_H__
 #define __CHARACTER_H__
+
 #include <string>
+
 class Gold;
 class Info;
 class Floor;

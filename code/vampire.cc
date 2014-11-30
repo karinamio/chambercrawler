@@ -17,8 +17,13 @@ Vampire::Vampire() {
 	instance = Player->instance;
 }
 
-void Vampire::attack(Enemy * enemy) {
+void Vampire::heal() {
 	HP = HP + 5;
+}
+
+void Vampire::attack(Enemy * enemy) {
+	heal();
+	enemy.attackBy(this);
 }
 
 void Vampire::attackBy(Player * player) {
