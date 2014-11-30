@@ -5,6 +5,7 @@
 class Item;
 class Info;
 class Map;
+class Floor;
 class Player : public AbstractPlayer {
 protected:
 	int maxHP;
@@ -13,8 +14,8 @@ protected:
 	static Character * instance;
 public:
 	Player();
-	static Character * getPlayer(Info* newInfo, Map* textMap);
-	Character * setPlayer(int,Info*,  Map* textMap);
+	static Character * getPlayer(Info* newInfo, Map* textMap, Floor * currentFloor);
+	Character * setPlayer(int,Info*,  Map* textMap, Floor * currentFloor);
 	virtual void move(std::string direction);
 	bool moveOut(Cell *);
 	void attack(Character*);
@@ -26,7 +27,7 @@ public:
 	void heal(int);
 	void endTurn();
 	bool isPlayer();
-
+	void attack(std::string direction);
 	~Player();
 };
 

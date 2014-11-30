@@ -19,6 +19,7 @@ protected:
 	Info * info;
 	std::string type;
 	Floor *floor;
+	Floor * currentFloor;
 public:
 	virtual void attack(Character*) = 0;
 	virtual void attackBy(Character*) = 0;
@@ -29,12 +30,14 @@ public:
 	virtual int getDef();
 	virtual int getAtk();
 	virtual void collect(Entity *);
+	virtual void attack(std::string direction);
 	bool attackable();
 	bool collectable();
 	bool takesSpace();
 	void addGold(int);
 	int getValue();
 	virtual void move(std::string);
+	virtual void move();
 	virtual ~Character();
 };
 

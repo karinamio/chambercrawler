@@ -8,7 +8,7 @@
 #include "player.h"
 using namespace std;
 Board *Board::instance = NULL;
-Board::Board():floorLevel(1){
+Board::Board():floorLevel(1),playing(true){
 	info = new Info;
 	map = new Map;
 }
@@ -24,12 +24,12 @@ Board * Board::getBoard(){
 }
 
 Floor *Board::createFloor(){
-	Floor *newFloor = new Floor(map,info, player);
+	Floor *newFloor = new Floor(map,info, player, this);
 	return newFloor;
 }
 
 Character * Board::createPlayer(){
-	Character *newPlayer = Player::getPlayer(info, map);
+	Character *newPlayer = Player::getPlayer(info, map, floor);
 	return newPlayer;
 
 }
@@ -55,16 +55,19 @@ Board::~Board(){
 	// delete player;
 	delete map;
 }	
-
+void Board::gameOver(){
+	playing ==false;
+}
 void Board::startGame(){
 	this->player = createPlayer();
-	this->floor = new Floor(map,info, player);
+	this->floor = createFloor();
 
 	this->floorLevel = 1;
 	string command;
-	while (cin >> command) {
+	while (cin >> command && playing) {
 		if (command == "no" || command == "so" || command == "ea" || command == "we" || command == "ne" || command == "nw" || command == "se" || command == "sw" ) {
 			this->player->move(command);
+			this->floor->enemyMove();
 		}
 		else if (command == "u") {
 			string direction;
@@ -74,11 +77,13 @@ void Board::startGame(){
 		else if (command == "a") {
 			string direction;
 			cin >> direction;
-			// this->player->attack(direction);
+			this->player->attack(direction);
+			this->floor->enemyMove();
 		}
 		else if (command == "r") {
 			// reset errythang!!!!!!!
 		}
+
 		else if (command == "q") {
 			// forfeit and exit game
 			cout << "Player forfeited." << endl;

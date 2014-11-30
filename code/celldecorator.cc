@@ -15,7 +15,9 @@ CellDecorator::CellDecorator(Cell * cell) : cell(cell) {
 	this->x = cell->getX();
 	this->y = cell->getY();
 }
-
+bool CellDecorator::movable(){
+	return cell->movable();
+}
 CellDecorator::~CellDecorator() {
 	delete cell;
 }
@@ -27,6 +29,9 @@ bool CellDecorator::collectable(Character * character){
 }
 bool CellDecorator::movable(Character * character){
 	return cell->movable(character);
+}
+Cell *CellDecorator::neighbourAttackable(Character* character, string direction){
+	return cell->neighbourAttackable(character, direction);
 }
 Cell *CellDecorator::neighbourMovable(Character* character, string direction){
  	return cell->neighbourMovable(character, direction);

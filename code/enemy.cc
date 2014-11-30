@@ -6,14 +6,17 @@
 #include <time.h>
 #include <cstdlib>
 #include <math.h>
-
+#include <iostream>
+#include "map.h"
+#include "player.h"
+#include "gold.h"
 using namespace std;
 
-Character * createEnemy() {
+Character * createEnemy(Map * textMap, int id, Floor* currentFloor) {
 	srand(time(NULL));
 	int random = rand() % 18;
 	Character * newEnemy = NULL;
-	newEnemy = new Human;
+	newEnemy = new Human(textMap, id, currentFloor);
 	// if(random < 4){
 	// 	newEnemy = new Human;
 	// }
@@ -40,37 +43,54 @@ bool Enemy::hostileEnemy() {
 }
 
 void Enemy::move() {
-	Character * possiblePlayer = dynamic_cast<Character *> (location->playerInRange()->getEntity());
-	Cell * possibleMove;
+	Cell *a = NULL;
+	a = location->playerInRange();
+	Character * possiblePlayer = NULL;
+	if(a){
+		possiblePlayer = dynamic_cast<Character *> (a->getEntity());
+	}
+
+	Cell * possibleMove = NULL;
+
 	if(possiblePlayer && this->hostileEnemy()) {
 		this->attack(possiblePlayer);
 	}
 	else {
+		
 		possibleMove = location->randomMoveableCell();
 		if (possibleMove) {
 			possibleMove->setEntity(this);
 			location->setEntity(NULL);
+			location->cellObject=NULL;
+			textMap->notify(location->getY(),location->getX(),location->getSelf());
 			location = possibleMove;
 		}
 		else {
-
+			cout<<"invalid player move"<<endl;
 		}
 	}
 }
 
 void Enemy::attack(Character * player) {
+	cout<<"enemy attack"<<endl;
 	player->attackBy(this);
 }
 
 void Enemy::attackBy(Character * player) {
-	HP -= ceil((100/(100+this->getDef()))*player->getAtk());
+		cout<<"Old HP Enemy"<<HP<<endl;
+	HP -= ceil((100.0/(100.0+this->getDef()))*player->getAtk());
+	cout<<"New HP Enemy"<<HP<<endl;
 		if (HP <= 0){
-			this->defeated();
+			cout<<"Enemy Died!"<<endl;
+			player->collect(dynamic_cast<Entity *>(gold));
+			this->Enemy::defeated();
+
 		}
+		
 }
 
 void Enemy::defeated() {
-	// floor->enemyDied(chamberID, ID);
+	currentFloor->enemyDied(ID);
 }
 
 bool Enemy::attackable() {
@@ -82,6 +102,7 @@ bool Enemy::moveOut(Cell * cell) {
 }
 
 Enemy::~Enemy() {
+
 }
 
 Enemy::Enemy(){

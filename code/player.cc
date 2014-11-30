@@ -28,16 +28,16 @@ Player::Player(){
 	
 }
 
-Character * Player::getPlayer(Info* newInfo, Map* textMap) {
+Character * Player::getPlayer(Info* newInfo, Map* textMap, Floor* currentFloor) {
 	if (!instance) {
-		instance = new Shade(newInfo, textMap);
+		instance = new Shade(newInfo, textMap, currentFloor);
 	}
 	return instance;
 }
 
-Character * Player::setPlayer(int i, Info* newInfo, Map* textMap) {
+Character * Player::setPlayer(int i, Info* newInfo, Map* textMap, Floor* currentFloor) {
 	if (i == 0){
-		instance = new Shade(newInfo, textMap);
+		instance = new Shade(newInfo, textMap, currentFloor);
 	}
 	// else if (i == 1){
 	// 	instance = new Vampire;
@@ -67,6 +67,7 @@ void Player::move(string direction) {
 			this->collect(cell->getEntity());
 		}
 		cell->setEntity(this);
+		cell->cellObject=this;
 		location->setEntity(NULL);
 		location->cellObject=NULL;
 		textMap->notify(location->getY(),location->getX(),location->getSelf());
@@ -79,6 +80,19 @@ void Player::move(string direction) {
 
 }
 
+void Player::attack(string direction){
+	Cell* cell;
+	cell=location->neighbourAttackable(this, direction);
+	if (cell) {
+		cout<<"attack"<<endl;
+		attack(dynamic_cast<Character *>(cell->cellObject));
+		
+	}
+	else{
+		cout<<"cant attack"<<endl;
+	}
+}
+
 bool Player::isPlayer() {
 	return true;
 }
@@ -87,14 +101,17 @@ void Player::attack(Character* enemy) {
 }
 
 void Player::attackBy(Character* enemy) {
-	HP -= ceil((100/(100+this->getDef()))*enemy->getAtk());
+	cout<<"Old HP"<<HP<<endl;
+	HP -= ceil((100.0/(100.0+this->getDef()))*enemy->getAtk());
+	cout<<"New HP"<<HP<<endl;
 	if (HP <= 0){
-		this->defeated();
+		this->Player::defeated();
 	}
+	
 }
 
 void Player::defeated() {
-	floor->playerDied();
+	currentFloor->playerDied();
 }
 
 void Player::usePotion(string direction) {
