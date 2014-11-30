@@ -1,7 +1,10 @@
 #ifndef __CHARACTER_H__
 #define __CHARACTER_H__
+
 #include <string>
+
 #include "entity.h"
+
 class Gold;
 class Info;
 class Floor;

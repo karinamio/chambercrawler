@@ -16,6 +16,15 @@ Troll::Troll() {
 	instance = Player->instance;
 }
 
+void Troll::endTurn() {
+	if (HP + 5 > maxHP) {
+		HP = maxHP;
+	}
+	else {
+		HP = HP + 5;
+	}
+}
+
 void Troll::attack(Enemy * enemy) {
 }
 
