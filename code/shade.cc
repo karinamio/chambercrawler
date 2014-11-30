@@ -4,6 +4,7 @@
 #include "shade.h"
 #include "gold.h"
 #include "player.h"
+
 using namespace std;
 
 Shade::Shade(Info *newInfo) {

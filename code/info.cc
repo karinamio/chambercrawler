@@ -4,13 +4,19 @@
 using namespace std;
 
 void Info::print() {
-	cout << left << "Race: " << Player.type << "Gold: " << Player.gold.value << right << "Floor " << board.floorLevel << endl;
-	cout << "HP: " << Player.HP << endl;
-	cout << "Atk: " << Player.Atk << endl;
-	cout << "Def: " << Player.Def << endl;
+	cout << left << "Race: " << Player->type << "Gold: " << Player->gold->value << right << "Floor " << board->floorLevel << endl;
+	cout << "HP: " << Player->HP << endl;
+	cout << "Atk: " << Player->Atk << endl;
+	cout << "Def: " << Player->Def << endl;
 	cout << "Action: " << Action << endl;
 }
 
 void Info::notify() {
-
+	// spawning messages
+	// player attacks, enemy attacks
+	// player moves
+	// player sees potions
+	// player collects gold
+	// player slays enemy
+	// player uses potions
 }

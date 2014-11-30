@@ -9,7 +9,7 @@ Human::Human() {
 	HP = 140;
 	Atk = 20;
 	Def = 20;
-	gold = ;
+	gold = new Gold(5);
 	info = Board->info;
 	type = "Human";
 }

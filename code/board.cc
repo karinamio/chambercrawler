@@ -6,11 +6,14 @@
 #include <iostream>
 
 using namespace std;
+
 Board *Board::instance = NULL;
+
 Board::Board():floorLevel(1){
 	info = new Info;
 	map = new Map;
 }
+
 Board * Board::getBoard(){
 	if(instance){
 	}

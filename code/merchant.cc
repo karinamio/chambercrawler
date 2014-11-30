@@ -10,7 +10,7 @@ Merchant::Merchant() {
 	HP = 30;
 	Atk = 70;
 	Def = 5;
-	gold = ;
+	gold = new Gold(4);
 	info = Board->info;
 	type = "Orc";
 }
@@ -21,14 +21,16 @@ void Merchant::defeated() {
 
 void Merchant::attack() {
 	if (hostile == false) {
-		// do nothing
 	}
 	else {
-		// attack
+		enemy->attackBy(this);
 	}
 }
 
 void Merchant::attackBy() {
 	hostile = true;
-	// get attacked
+	HP -= ceil((100/(100+this->getDef()))*enemy->getAtk());
+	if (HP <= 0) {
+		this->defeated();
+	}
 }
