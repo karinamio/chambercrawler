@@ -26,8 +26,8 @@ Board * Board::getBoard(){
 	return instance;
 }
 
-Floor *Board::createFloor(){
-	Floor *newFloor = new Floor(map,info, player, this);
+Floor *Board::createFloor(bool exists,string fileName){
+	Floor *newFloor = new Floor(map,info, player, this, exists, fileName);
 	return newFloor;
 }
 
@@ -48,7 +48,7 @@ void Board::stairsReached(){
 	}
 	else {
 		delete this->floor;
-		this->floor = createFloor();
+		this->floor = createFloor(false, "");
 		this->floorLevel += 1;
 	}
 	
@@ -63,10 +63,10 @@ Board::~Board(){
 void Board::gameOver(){
 	playing =false;
 }
-void Board::startGame(){
+void Board::startGame(bool exists, string fileName){
 	Floor::currentBoard = this;
 	this->player = createPlayer();
-	this->floor = createFloor();
+	this->floor = createFloor(exists, fileName);
 
 	this->floorLevel = 1;
 	string command;

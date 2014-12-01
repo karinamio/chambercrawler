@@ -94,7 +94,7 @@ void Floor::enemyDied(int enemyID) {
 	enemies[enemyID] = NULL;
 }
 
-Floor::Floor(Map* textMap,Info* info, Character* player, Board *board): textMap(textMap), player(player), info(info), enemyCount(0) {
+Floor::Floor(Map* textMap,Info* info, Character* player, Board *board, bool exists, string fileName): textMap(textMap), player(player), info(info), enemyCount(0) {
 	int randomChamber;
 	currentBoard = board;
 
@@ -104,7 +104,8 @@ Floor::Floor(Map* textMap,Info* info, Character* player, Board *board): textMap(
 		}
 	}
 
-	decorateCells(false, "hi");
+
+	decorateCells(exists, fileName);
 	// chambers[0] = new Chamber(this,cell, 0);
 	// chambers[1] = new Chamber(this,cell, 1);
 	// chambers[2] = new Chamber(this,cell, 2);
