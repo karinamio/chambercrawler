@@ -103,6 +103,7 @@ void Board::startGame(bool exists, string fileName){
 			info->print();
 		}
 		else if (command == "r") {
+
 			player->heal(1000);
 			info->notify("Action", "Reset");
 			int value = player->gold->getValue();
@@ -110,6 +111,7 @@ void Board::startGame(bool exists, string fileName){
 			player->setAtk(15);
 			player->setDef(20);
 			this->startGame(exists, fileName);
+
 			break;
 
 		}
@@ -122,6 +124,10 @@ void Board::startGame(bool exists, string fileName){
 		else if (command == "p"){
 			map->print();
 			info->print();
+		}
+
+		else if (command == "s") {
+			
 		}
 	}
 }

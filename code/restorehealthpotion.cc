@@ -15,10 +15,7 @@ RestoreHealthPotion::RestoreHealthPotion() {
 }
 
 void RestoreHealthPotion::used(Character * character) {
-	cout << character->getHP() << endl;
 	character->heal(HP);
-	cout << "restored" << endl;
-	cout << character->getHP() << endl;
 }
 
 RestoreHealthPotion::~RestoreHealthPotion() {
