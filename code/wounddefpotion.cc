@@ -1,4 +1,5 @@
 #include "potion.h"
+#include "character.h"
 #include "wounddefpotion.h"
 
 using namespace std;
@@ -12,7 +13,7 @@ WoundDefPotion::WoundDefPotion() {
 }
 
 void WoundDefPotion::used(Character * character) {
-// decrease def by 5
+	character->def(Def);
 }
 
 WoundDefPotion::~WoundDefPotion() {

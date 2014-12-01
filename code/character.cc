@@ -46,6 +46,22 @@ void Character::heal(int amount) {
 
 }
 
+void Character::atk(int amount) {
+
+}
+
+void Character::def(int amount) {
+
+}
+
+void Character::setAtk(int amount) {
+
+}
+
+void Character::setDef(int amount) {
+
+}
+
 Character::~Character() {
 	// delete gold;
 }

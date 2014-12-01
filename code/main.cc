@@ -6,6 +6,4 @@ int main() {
 	game->startGame();
 	// start game
 	// create board
-	
-
 }

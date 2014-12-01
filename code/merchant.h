@@ -8,9 +8,11 @@ protected:
 	static bool hostile;
 public:
 
+
 	Merchant(Map *textMap, int ID, Floor * currentFloor,Info* info);
 	void attackBy(Character *player);
 	bool isHostile();
+
 
 	~Merchant();
 };
