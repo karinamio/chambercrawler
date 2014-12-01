@@ -59,15 +59,16 @@ Board::~Board(){
 	delete map;
 }	
 void Board::gameOver(){
-	playing ==false;
+	playing =false;
 }
 void Board::startGame(){
+	Floor::currentBoard = this;
 	this->player = createPlayer();
 	this->floor = createFloor();
 
 	this->floorLevel = 1;
 	string command;
-	while (cin >> command && playing) {
+	while ( playing && cin >> command ) {
 		if (command == "no" || command == "so" || command == "ea" || command == "we" || command == "ne" || command == "nw" || command == "se" || command == "sw" ) {
 			this->player->move(command);
 			this->floor->enemyMove();

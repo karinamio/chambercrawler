@@ -32,7 +32,7 @@
 #include "merchant.h"
 
 using namespace std;
-
+Board* Floor::currentBoard;
 class Cell;
 
 Floor::~Floor() {
@@ -48,8 +48,8 @@ Floor::~Floor() {
 
 void Floor::playerDied(){
 	cout<<"Game Over"<<endl;
-	exit(0);
-	// currentBoard->gameOver();
+	// exit(0);
+	currentBoard->gameOver();
 }
 
 int Floor::randomChamber(){
@@ -94,8 +94,9 @@ void Floor::enemyDied(int enemyID) {
 	enemies[enemyID] = NULL;
 }
 
-Floor::Floor(Map* textMap,Info* info, Character* player, Board *currentBoard): textMap(textMap), player(player), info(info), enemyCount(0),currentBoard(currentBoard) {
+Floor::Floor(Map* textMap,Info* info, Character* player, Board *board): textMap(textMap), player(player), info(info), enemyCount(0) {
 	int randomChamber;
+	currentBoard = board;
 
 	for(int i = 0; i < MAP_HEIGHT; i++){
 		for(int j = 0; j < MAP_WIDTH; j++){

@@ -25,11 +25,12 @@ class Floor{
 	Character *player;
 	int playerInitialChamber;
 	int enemyCount;
-	Board *currentBoard;
+	
 	int randomChamber();
 
 
 public:
+	static Board *currentBoard;
 	void enemyMove();
 	void spawnStair();
 	void spawnItems();
@@ -39,7 +40,7 @@ public:
 	void playerDied();
 	void enemyDied(int);
 	~Floor();
-	Floor(Map* textMap,Info* info, Character* player,Board *board);
+	Floor(Map* textMap,Info* info, Character* player,Board *currentBoard);
 };
 
 #endif
