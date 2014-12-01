@@ -157,7 +157,7 @@ void Floor::decorateCells(bool different, std::string fileName){
 					cell[counti][countj] = new Door(cell[counti][countj]);
 					break;
 				case '/':
-					cell[counti][countj] = new Stair(cell[counti][countj]);
+					cell[counti][countj] = new Stair(cell[counti][countj], currentBoard);
 					break;
 				case '@':
 					cell[counti][countj] = new Tile(cell[counti][countj]);

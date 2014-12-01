@@ -4,6 +4,7 @@
 #include "board.h"
 #include <cstdlib>
 #include <iostream>
+#include <sstream>
 #include "character.h"
 #include "player.h"
 using namespace std;
@@ -44,14 +45,19 @@ void Board::cleanup(){
 
 void Board::stairsReached(){
 	if(this->floorLevel == 5){
-		cout<<"You Won!";
+		cout<<"You Won!"<<endl;
+		playing = false;
 	}
 	else {
 		delete this->floor;
 		this->floor = createFloor(false, "");
 		this->floorLevel += 1;
 	}
-	
+	stringstream ss;
+	ss << this->floorLevel;
+	string str = ss.str();
+
+	info->notify("Floor", str);
 	player->setAtk(15);
 	player->setDef(20);
 }
