@@ -4,8 +4,10 @@
 #include "board.h"
 #include <cstdlib>
 #include <iostream>
+#include <sstream>
 #include "character.h"
 #include "player.h"
+#include "gold.h"
 using namespace std;
 
 Board *Board::instance = NULL;
@@ -26,8 +28,8 @@ Board * Board::getBoard(){
 	return instance;
 }
 
-Floor *Board::createFloor(){
-	Floor *newFloor = new Floor(map,info, player, this);
+Floor *Board::createFloor(bool exists,string fileName){
+	Floor *newFloor = new Floor(map,info, player, this, exists, fileName);
 	return newFloor;
 }
 
@@ -44,14 +46,19 @@ void Board::cleanup(){
 
 void Board::stairsReached(){
 	if(this->floorLevel == 5){
-		cout<<"You Won!";
+		cout<<"You Won!"<<endl;
+		playing = false;
 	}
 	else {
 		delete this->floor;
-		this->floor = createFloor();
+		this->floor = createFloor(false, "");
 		this->floorLevel += 1;
 	}
-	
+	stringstream ss;
+	ss << this->floorLevel;
+	string str = ss.str();
+
+	info->notify("Floor", str);
 	player->setAtk(15);
 	player->setDef(20);
 }
@@ -63,12 +70,15 @@ Board::~Board(){
 void Board::gameOver(){
 	playing =false;
 }
-void Board::startGame(){
+void Board::startGame(bool exists, string fileName){
+	int newRace = 0;
 	Floor::currentBoard = this;
 	this->player = createPlayer();
-	this->floor = createFloor();
+	this->floor = createFloor(exists, fileName);
 
 	this->floorLevel = 1;
+	map->print();
+	info->print();
 	string command;
 	while ( playing && cin >> command ) {
 		if (command == "no" || command == "so" || command == "ea" || command == "we" || command == "ne" || command == "nw" || command == "se" || command == "sw" ) {
@@ -93,7 +103,17 @@ void Board::startGame(){
 			info->print();
 		}
 		else if (command == "r") {
-			// reset errythang!!!!!!!
+
+			player->heal(1000);
+			info->notify("Action", "Reset");
+			int value = player->gold->getValue();
+			player->gold->addGold(value*-1);
+			player->setAtk(15);
+			player->setDef(20);
+			this->startGame(exists, fileName);
+
+			break;
+
 		}
 
 		else if (command == "q") {
@@ -104,6 +124,10 @@ void Board::startGame(){
 		else if (command == "p"){
 			map->print();
 			info->print();
+		}
+
+		else if (command == "s") {
+			
 		}
 	}
 }

@@ -37,6 +37,7 @@ public:
 	virtual Map* getTextMap();
 	virtual Entity * getEntity();
 	virtual char getSelf() = 0;
+	virtual void moved(Character *);
 };
 
 #endif

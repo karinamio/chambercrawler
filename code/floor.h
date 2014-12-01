@@ -40,7 +40,7 @@ public:
 	void playerDied();
 	void enemyDied(int);
 	~Floor();
-	Floor(Map* textMap,Info* info, Character* player,Board *currentBoard);
+	Floor(Map* textMap,Info* info, Character* player,Board *currentBoard, bool exists, std::string fileName);
 };
 
 #endif

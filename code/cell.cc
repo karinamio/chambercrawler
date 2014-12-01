@@ -28,3 +28,6 @@ Map* Cell::getTextMap(){
 	// textMap->print();
 	return textMap;
 }
+void Cell::moved(Character *){
+
+}

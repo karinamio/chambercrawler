@@ -15,7 +15,7 @@ protected:
 public:
 	Player();
 	static Character * getPlayer(Info* newInfo, Map* textMap, Floor * currentFloor);
-	Character * setPlayer(int,Info*,  Map* textMap, Floor * currentFloor);
+	static Character * setPlayer(int,Info*,  Map* textMap, Floor * currentFloor);
 	virtual void move(std::string direction);
 	bool moveOut(Cell *);
 	void attack(Character*);
