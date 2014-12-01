@@ -7,6 +7,7 @@
 #include <sstream>
 #include "character.h"
 #include "player.h"
+#include "gold.h"
 using namespace std;
 
 Board *Board::instance = NULL;
@@ -70,6 +71,7 @@ void Board::gameOver(){
 	playing =false;
 }
 void Board::startGame(bool exists, string fileName){
+	int newRace = 0;
 	Floor::currentBoard = this;
 	this->player = createPlayer();
 	this->floor = createFloor(exists, fileName);
@@ -101,9 +103,15 @@ void Board::startGame(bool exists, string fileName){
 			info->print();
 		}
 		else if (command == "r") {
-			this->player= Player::getPlayer(info, map, floor);
-			startGame();
+			player->heal(1000);
+			info->notify("Action", "Reset");
+			int value = player->gold->getValue();
+			player->gold->addGold(value*-1);
+			player->setAtk(15);
+			player->setDef(20);
+			this->startGame(exists, fileName);
 			break;
+
 		}
 
 		else if (command == "q") {

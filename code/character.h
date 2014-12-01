@@ -15,12 +15,13 @@ protected:
 	int HP;
 	int Atk;
 	int Def;
-	Gold * gold;
+
 	Info * info;
 	std::string type;
 	Floor *floor;
 	Floor * currentFloor;
 public:
+	Gold * gold;
 	virtual void attack(Character*) = 0;
 	virtual void attackBy(Character*) = 0;
 	virtual bool isPlayer();
