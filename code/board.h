@@ -16,10 +16,10 @@ class Board{
 	static void cleanup();
 public:
 	Board();
-	void startGame();
+	void startGame(bool, std::string);
 	void gameOver();
 	// static Board *getInstance();
-	Floor * createFloor();
+	Floor * createFloor(bool, std::string);
 	Character * createPlayer();
 	static Board * getBoard();
 	void stairsReached();
