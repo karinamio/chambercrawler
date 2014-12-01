@@ -187,7 +187,7 @@ void Player::heal(int healAmount) {
 	ss << HP;
 	string str = ss.str();
 	info->notify("HP", str);
-	info->notify("Action", "Used a potion");
+	info->notify("Action", "Used a health potion.");
 }
 
 void Player::def(int amount) {
@@ -205,7 +205,7 @@ void Player::def(int amount) {
 	ss << Def;
 	string str = ss.str();
 	info->notify("Def", str);
-	info->notify("Action", "Used a potion for defense.");
+	info->notify("Action", "Used a defense potion.");
 }
 
 void Player::atk(int amount) {
@@ -223,7 +223,7 @@ void Player::atk(int amount) {
 	ss << Atk;
 	string str = ss.str();
 	info->notify("Atk", str);
-	info->notify("Action", "Used a potion for attack.");
+	info->notify("Action", "Used an attack potion.");
 }
 
 void Player::endTurn() {

@@ -102,7 +102,7 @@ void Board::startGame(bool exists, string fileName){
 		}
 		else if (command == "r") {
 			this->player= Player::getPlayer(info, map, floor);
-			startGame();
+			startGame(exists, fileName);
 			break;
 		}
 
