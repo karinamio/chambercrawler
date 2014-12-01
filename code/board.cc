@@ -111,5 +111,9 @@ void Board::startGame(bool exists, string fileName){
 			map->print();
 			info->print();
 		}
+
+		else if (command == "s") {
+			
+		}
 	}
 }
