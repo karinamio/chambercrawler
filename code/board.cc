@@ -71,17 +71,23 @@ void Board::startGame(){
 		if (command == "no" || command == "so" || command == "ea" || command == "we" || command == "ne" || command == "nw" || command == "se" || command == "sw" ) {
 			this->player->move(command);
 			this->floor->enemyMove();
+			map->print();
+			info->print();
 		}
 		else if (command == "u") {
 			string direction;
 			cin >> direction;
-			// this->player->usePotion(direction);
+			this->player->usePotion(direction);
+			map->print();
+			info->print();
 		}
 		else if (command == "a") {
 			string direction;
 			cin >> direction;
 			this->player->attack(direction);
 			this->floor->enemyMove();
+			map->print();
+			info->print();
 		}
 		else if (command == "r") {
 			// reset errythang!!!!!!!
@@ -94,6 +100,7 @@ void Board::startGame(){
 		}
 		else if (command == "p"){
 			map->print();
+			info->print();
 		}
 	}
 }

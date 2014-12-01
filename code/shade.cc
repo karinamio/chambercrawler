@@ -11,7 +11,7 @@ using namespace std;
 Shade::Shade(Info *newInfo, Map* textMap, Floor * currentFloor) {
 	HP = 110;
 	maxHP = 110;
-	Atk = 150;
+	Atk = 15;
 	Def = 20;
 	gold = new Gold(10);
 	info = newInfo;
@@ -19,12 +19,11 @@ Shade::Shade(Info *newInfo, Map* textMap, Floor * currentFloor) {
 	self = '@';
 	this->textMap = textMap;
 	this->currentFloor = currentFloor;
-
 }
+
 int Shade::score() {
 	return (gold->getValue()*1.5);
 }
 
-Shade::~Shade(){
-
+Shade::~Shade() {
 }

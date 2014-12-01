@@ -8,10 +8,11 @@ BoostAtkPotion::BoostAtkPotion() {
 	Atk = 5;
 	Def = 0;
 	permanent = false;
+	self = 'P';
 }
 
 void BoostAtkPotion::used(Character * character) {
-// increase atk by 5
+	
 }
 
 BoostAtkPotion::~BoostAtkPotion() {

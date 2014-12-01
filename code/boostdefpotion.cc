@@ -8,6 +8,7 @@ BoostDefPotion::BoostDefPotion() {
 	Atk = 0;
 	Def = 5;
 	permanent = false;
+	self = 'P';
 }
 
 void BoostDefPotion::used(Character * character) {

@@ -19,6 +19,10 @@ bool Entity::takesSpace(Character* character) {
 	return true;
 }
 
+void Entity::used(Character * character) {
+	
+}
+
 bool Entity::isPlayer() {
 	return false;
 }

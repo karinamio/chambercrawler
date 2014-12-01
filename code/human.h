@@ -5,7 +5,7 @@
 #include "floor.h"
 class Human : public Enemy {
 public:
-	Human(Map *, int, Floor*);
+	Human(Map *, int, Floor*, Info* info);
 	void defeated();
 	~Human();
 };

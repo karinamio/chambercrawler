@@ -3,7 +3,7 @@
 #include "player.h"
 class Goblin : public Player {
 public:
-	Goblin();
+	Goblin(Info *, Map*);
 	void attack(Character * enemy);
 	void attackBy(Character * player);
 	~Goblin();

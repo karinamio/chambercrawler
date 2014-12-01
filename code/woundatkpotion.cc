@@ -8,6 +8,7 @@ WoundAtkPotion::WoundAtkPotion() {
 	Atk = -5;
 	Def = 0;
 	permanent = false;
+	self = 'P';
 }
 
 void WoundAtkPotion::used(Character * character) {

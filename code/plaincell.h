@@ -2,13 +2,14 @@
 #define __PLAINCELL_H__
 #include "cell.h"
 #include <string>
+class Character;
 class PlainCell: public Cell{
 protected:
-
 public:
 	bool movable(Character * character);
 	bool movable();
 	Cell *neighbourMovable(Character*, std::string);
+	Cell *getNeighbour(Character*, std::string);
 	bool attackable();
 	bool useable();
 	bool collectable(Character *);

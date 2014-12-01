@@ -6,15 +6,16 @@
 
 using namespace std;
 
-Vampire::Vampire() {
+Vampire::Vampire(Info *newInfo, Map* textMap) {
 	HP = 50;
 	maxHP = INT_MAX;
 	Atk = 25;
 	Def = 15;
-	gold = new Gold;
+	gold = new Gold(10);
 	info = Board->info;
 	type = "Vampire";
-	instance = Player->instance;
+	self = '@';
+	this->textMap = textMap;
 }
 
 void Vampire::heal() {

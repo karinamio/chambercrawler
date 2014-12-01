@@ -10,8 +10,8 @@ Dragon::Dragon() {
 	Atk = 20;
 	Def = 20;
 	gold = new Gold(6);
-	info = Board->info;
 	type = "Dragon";
+	self = 'D';
 }
 
 void Dragon::move() {

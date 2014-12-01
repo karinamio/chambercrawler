@@ -88,11 +88,56 @@ Cell *PlainCell::neighbourMovable(Character* character, string direction){
 				}
 			}
 		}
-
 	}
 	return neighbour;
 }
 
+Cell * PlainCell::getNeighbour(Character * character, string direction) {
+	Cell * potionCell = NULL;
+	for (int i = 0; i < numNeighbours; i++){
+		if (direction == "no"){
+			if (neighbours[i]->getX() == x && neighbours[i]->getY() == y-1){
+				potionCell = neighbours[i];
+			}
+		}
+		else if (direction == "so"){
+			if (neighbours[i]->getX() == x && neighbours[i]->getY() == y+1){	
+				potionCell = neighbours[i];
+			}
+		}
+		else if (direction == "ea"){
+			if (neighbours[i]->getX() == x+1 && neighbours[i]->getY() == y){
+				potionCell = neighbours[i];
+			}
+		}
+		else if (direction == "we"){
+			if (neighbours[i]->getX() == x-1 && neighbours[i]->getY() == y){
+				potionCell = neighbours[i];
+			}
+		}
+		else if (direction == "ne"){
+			if (neighbours[i]->getX() == x+1 && neighbours[i]->getY() == y-1){
+				potionCell = neighbours[i];
+			}
+		}
+		else if (direction == "nw"){
+			if (neighbours[i]->getX() == x-1 && neighbours[i]->getY() == y-1){
+				potionCell = neighbours[i];
+			}
+		}
+		else if (direction == "se"){
+			if (neighbours[i]->getX() == x+1 && neighbours[i]->getY() == y+1){
+				potionCell = neighbours[i];
+			}
+		}
+		else if (direction == "sw"){
+			if (neighbours[i]->getX() == x-1 && neighbours[i]->getY() == y+1){
+				potionCell = neighbours[i];
+			}
+		}
+	}
+	return potionCell;
+}
 
 Cell *PlainCell::neighbourAttackable(Character* character, string direction){
 	Cell *neighbour = NULL;
@@ -104,67 +149,63 @@ Cell *PlainCell::neighbourAttackable(Character* character, string direction){
 		// cout<<"y: "<<i<<"  "<< neighbours[i]->getY()<<endl;
 		if (direction == "no"){
 			if (neighbours[i]->getX() == x && neighbours[i]->getY() == y-1){
-				if (neighbours[i]->cellObject && neighbours[i]->cellObject->attackable()){
+				if (neighbours[i]->cellObject->attackable()){
 					neighbour = neighbours[i];
 				}	
 			}
 		}
 		else if (direction == "so"){
 			if (neighbours[i]->getX() == x && neighbours[i]->getY() == y+1){
-				if (neighbours[i]->cellObject && neighbours[i]->cellObject->attackable()){
+				if (neighbours[i]->cellObject->attackable()){
 					neighbour = neighbours[i];
 				}	
 			}
 		}
 		else if (direction == "ea"){
 			if (neighbours[i]->getX() == x+1 && neighbours[i]->getY() == y){
-				if (neighbours[i]->cellObject && neighbours[i]->cellObject->attackable()){
+				if (neighbours[i]->cellObject->attackable()){
 					neighbour = neighbours[i];
 				}	
 			}
 		}
 		else if (direction == "we"){
 			if (neighbours[i]->getX() == x-1 && neighbours[i]->getY() == y){
-				if (neighbours[i]->cellObject && neighbours[i]->cellObject->attackable()){
+				if (neighbours[i]->cellObject->attackable()){
 					neighbour = neighbours[i];
 				}	
 			}
 		}
 		else if (direction == "ne"){
 			if (neighbours[i]->getX() == x+1 && neighbours[i]->getY() == y-1){
-				if (neighbours[i]->cellObject && neighbours[i]->cellObject->attackable()){
+				if (neighbours[i]->cellObject->attackable()){
 					neighbour = neighbours[i];
 				}	
 			}
 		}
 		else if (direction == "nw"){
 			if (neighbours[i]->getX() == x-1 && neighbours[i]->getY() == y-1){
-				if (neighbours[i]->cellObject && neighbours[i]->cellObject->attackable()){
+				if (neighbours[i]->cellObject->attackable()){
 					neighbour = neighbours[i];
 				}	
 			}
 		}
 		else if (direction == "se"){
 			if (neighbours[i]->getX() == x+1 && neighbours[i]->getY() == y+1){
-				if (neighbours[i]->cellObject && neighbours[i]->cellObject->attackable()){
+				if (neighbours[i]->cellObject->attackable()){
 					neighbour = neighbours[i];
 				}	
 			}
 		}
 		else if (direction == "sw"){
 			if (neighbours[i]->getX() == x-1 && neighbours[i]->getY() == y+1){
-				if (neighbours[i]->cellObject && neighbours[i]->cellObject->attackable()){
+				if (neighbours[i]->cellObject->attackable()){
 					neighbour = neighbours[i];
 				}	
 			}
 		}
-
 	}
 	return neighbour;
 }
-
-
-
 
 bool PlainCell::attackable() {
 	return false;
@@ -198,12 +239,22 @@ Cell * PlainCell::randomMoveableCell() {
 	while (canMove == false && neighbourCount < numNeighbours){
 		random = rand() % numNeighbours;
 		if (neighbours[random]->getEntity()){
-			canMove = neighbours[random]->getEntity()->takesSpace();
-			moveableNeighbour = neighbours[random];
+			if (neighbours[random]->getEntity()->takesSpace()){
+
+			}
+			else{
+				canMove = true;
+				moveableNeighbour = neighbours[random];
+			}
+
+			
 		}
 		else{
 			canMove = neighbours[random]->movable();
-			moveableNeighbour = neighbours[random];
+			if(canMove){
+				moveableNeighbour = neighbours[random];
+			}
+			
 		}
 		neighbourCount ++;
 		

@@ -3,7 +3,7 @@
 #include "player.h"
 class Vampire : public Player {
 public:
-	Vampire();
+	Vampire(Info *, Map*);
 	void heal();
 	void attack(Character * enemy);
 	void attackBy(Character * player);

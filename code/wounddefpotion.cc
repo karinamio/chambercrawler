@@ -8,6 +8,7 @@ WoundDefPotion::WoundDefPotion() {
 	Atk = 0;
 	Def = -5;
 	permanent = false;
+	self = 'P';
 }
 
 void WoundDefPotion::used(Character * character) {

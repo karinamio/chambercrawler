@@ -38,16 +38,16 @@ Gold::Gold(int i){
 }
 
 bool Gold::takesSpace() {
-	return false;
+	return true;
 }
 
 bool Gold::takesSpace(Character * character) {
 
 	if (character->moveOut(location)) {
 
-		return true;
-	}
 		return false;
+	}
+		return true;
 }
 
 bool Gold::collectable(){
