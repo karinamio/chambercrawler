@@ -11,7 +11,7 @@ class Stair : public CellDecorator {
 		Board * board;
 		static char self;
 	public:
-		Stair(Cell * cell);
+		Stair(Cell * cell, Board *);
 		void moved(Character *);
 		bool movable(Character * character);
 		char getSelf();

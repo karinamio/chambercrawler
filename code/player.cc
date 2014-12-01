@@ -81,6 +81,7 @@ void Player::move(string direction) {
 		location->cellObject=NULL;
 		textMap->notify(location->getY(),location->getX(),location->getSelf());
 		location = cell;
+		location->moved(this);
 
 	info->notify("Action", "moved");
 	}
