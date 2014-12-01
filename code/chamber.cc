@@ -5,6 +5,7 @@
 #include <fstream>
 #include <cstdlib>
 #include "floorsection.h"
+#include <ctime>
 
 using namespace std;
 
@@ -46,6 +47,7 @@ void Chamber::buildChamber(Cell* floorMap[][79]) {
 
 Cell * Chamber::getRandomCell() {
 	while (true) {
+        srand (time(0));
 		int random = rand()%cellsInChamber.size();
 		Cell * potentialCell = cellsInChamber.at(random);
 		if (isCellUsed[potentialCell] == false) {
