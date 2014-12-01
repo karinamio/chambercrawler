@@ -75,6 +75,8 @@ void Board::startGame(bool exists, string fileName){
 	this->floor = createFloor(exists, fileName);
 
 	this->floorLevel = 1;
+	map->print();
+	info->print();
 	string command;
 	while ( playing && cin >> command ) {
 		if (command == "no" || command == "so" || command == "ea" || command == "we" || command == "ne" || command == "nw" || command == "se" || command == "sw" ) {
@@ -99,7 +101,9 @@ void Board::startGame(bool exists, string fileName){
 			info->print();
 		}
 		else if (command == "r") {
-			// reset errythang!!!!!!!
+			this->player= Player::getPlayer(info, map, floor);
+			startGame();
+			break;
 		}
 
 		else if (command == "q") {
