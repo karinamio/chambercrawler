@@ -59,6 +59,14 @@ bool Player::moveOut(Cell * cell) {
 	return true;
 }
 
+void Player::setAtk(int amount) {
+	Atk = amount;
+}
+
+void Player::setDef(int amount) {
+	Def = amount;
+}
+
 void Player::move(string direction) {
 	// find cell from direction
 	Cell* cell;
@@ -175,30 +183,30 @@ void Player::heal(int healAmount) {
 	}	
 }
 
-
 void Player::def(int amount) {
 	if (amount > 0) {
-		def += amount;
+		Def += amount;
 	} else {
-		if (def += amount <= 0) {
-			def = 0;
+		if (Def += amount <= 0) {
+			Def = 0;
 		} else {
-			def += amount;
+			Def += amount;
 		}
 	}
 }
 
 void Player::atk(int amount) {
 	if (amount > 0) {
-		atk += amount;
+		Atk += amount;
 	} else {
-		if (atk += amount <= 0) {
-			atk = 0;
+		if (Atk += amount <= 0) {
+			Atk = 0;
 		} else {
-			atk += amount;
+			Atk += amount;
 		}
 	}
 }
+
 void Player::endTurn() {
 
 }

@@ -1,4 +1,5 @@
 #include "potion.h"
+#include "character.h"
 #include "boostatkpotion.h"
 
 using namespace std;
@@ -12,7 +13,7 @@ BoostAtkPotion::BoostAtkPotion() {
 }
 
 void BoostAtkPotion::used(Character * character) {
-	
+	character->atk(Atk);
 }
 
 BoostAtkPotion::~BoostAtkPotion() {

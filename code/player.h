@@ -24,7 +24,11 @@ public:
 	void usePotion(std::string direction);
 	void collect(Entity *);
 	int score();
+	void setAtk(int);
+	void setDef(int);
 	void heal(int);
+	void atk(int);
+	void def(int);
 	void endTurn();
 	bool isPlayer();
 	void attack(std::string direction);

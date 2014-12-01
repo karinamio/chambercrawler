@@ -52,6 +52,8 @@ void Board::stairsReached(){
 		this->floorLevel += 1;
 	}
 	
+	player->setAtk(15);
+	player->setDef(20);
 }
 Board::~Board(){
 	delete info;

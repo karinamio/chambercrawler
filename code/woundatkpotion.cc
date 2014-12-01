@@ -1,4 +1,5 @@
 #include "potion.h"
+#include "character.h"
 #include "woundatkpotion.h"
 
 using namespace std;
@@ -12,7 +13,7 @@ WoundAtkPotion::WoundAtkPotion() {
 }
 
 void WoundAtkPotion::used(Character * character) {
-// decrease atk by 5
+	character->atk(Atk);
 }
 
 WoundAtkPotion::~WoundAtkPotion() {

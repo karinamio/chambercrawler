@@ -1,4 +1,5 @@
 #include "potion.h"
+#include "character.h"
 #include "boostdefpotion.h"
 
 using namespace std;
@@ -12,7 +13,7 @@ BoostDefPotion::BoostDefPotion() {
 }
 
 void BoostDefPotion::used(Character * character) {
-// increase def by 5
+	character->def(Def);// increase def by 5
 }
 
 BoostDefPotion::~BoostDefPotion() {
