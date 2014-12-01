@@ -158,11 +158,35 @@ void Player::heal(int healAmount) {
 			HP += healAmount;
 		}
 		else {
-			HP = healAmount;
+			HP = 0;
 		}
 	}	
 }
 
+
+void Player::def(int amount) {
+	if (amount > 0) {
+		def += amount;
+	} else {
+		if (def += amount <= 0) {
+			def = 0;
+		} else {
+			def += amount;
+		}
+	}
+}
+
+void Player::atk(int amount) {
+	if (amount > 0) {
+		atk += amount;
+	} else {
+		if (atk += amount <= 0) {
+			atk = 0;
+		} else {
+			atk += amount;
+		}
+	}
+}
 void Player::endTurn() {
 
 }
