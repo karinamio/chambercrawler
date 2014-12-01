@@ -181,31 +181,49 @@ void Player::heal(int healAmount) {
 		else {
 			HP = 0;
 		}
-	}	
+	}
+
+	stringstream ss;
+	ss << HP;
+	string str = ss.str();
+	info->notify("HP", str);
+	info->notify("Action", "Used a potion");
 }
 
 void Player::def(int amount) {
 	if (amount > 0) {
 		Def += amount;
 	} else {
-		if (Def += amount <= 0) {
+		if (Def + amount <= 0) {
 			Def = 0;
 		} else {
 			Def += amount;
 		}
 	}
+
+	stringstream ss;
+	ss << Def;
+	string str = ss.str();
+	info->notify("Def", str);
+	info->notify("Action", "Used a potion for defense.");
 }
 
 void Player::atk(int amount) {
 	if (amount > 0) {
 		Atk += amount;
 	} else {
-		if (Atk += amount <= 0) {
+		if (Atk + amount <= 0) {
 			Atk = 0;
 		} else {
 			Atk += amount;
 		}
 	}
+
+	stringstream ss;
+	ss << Atk;
+	string str = ss.str();
+	info->notify("Atk", str);
+	info->notify("Action", "Used a potion for attack.");
 }
 
 void Player::endTurn() {
