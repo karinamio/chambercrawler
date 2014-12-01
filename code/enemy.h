@@ -18,7 +18,7 @@ public:
 	virtual bool attackable();
 	virtual bool hostileEnemy();
 	bool moveOut(Cell *cell);
-	Character * createEnemy(Map*, int, Floor*);
+	Character * createEnemy(Map*, int, Floor*,Info *info);
 	~Enemy();
 };
 

@@ -17,7 +17,7 @@ Info::Info() {
 }
 
 void Info::print() {
-	cout << left << "Race: " << info["Race"] << " Gold: " << info["Gold"] << right << "Floor " << info["Floor"] << endl;
+	cout << left << "Race: " << info["Race"] << " Gold: " << info["Gold"] << right << " Floor " << info["Floor"] << endl;
 	cout << "HP: " << info["HP"] << endl;
 	cout << "Atk: " << info["Atk"] << endl;
 	cout << "Def: " << info["Def"] << endl;

@@ -2,12 +2,17 @@
 #include "enemy.h"
 #include "character.h"
 #include "orc.h"
+#include "gold.h"
+#include "map.h"
 #include <time.h>
 #include <cstdlib>
 
+
 using namespace std;
 
-Orc::Orc(Map *textMap, int ID, Floor * currentFloor) {
+
+Orc::Orc(Map *textMap, int ID, Floor * currentFloor, Info * info) {
+
 	HP = 180;
 	Atk = 30;
 	Def = 25;
@@ -18,11 +23,15 @@ Orc::Orc(Map *textMap, int ID, Floor * currentFloor) {
 	this->textMap = textMap;
 	this->ID = ID;
 	this->currentFloor = currentFloor;
-}
+	this->info = info;
 
-void Elf::attack() {
-	// does 50% more damage to goblins
 }
+	Orc::~Orc(){
 
-void Elf::attackBy() {
-}
+	}
+// void Orc::attack() {
+// 	// does 50% more damage to goblins
+// }
+
+// void Orc::attackBy() {
+// }

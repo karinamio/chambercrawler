@@ -65,3 +65,6 @@ void Character::move(){
 void Character::collect(Entity * a){
 	cout<<"fk me"<<endl;
 }
+void Character::move(std::string){
+
+}

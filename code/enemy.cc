@@ -10,13 +10,15 @@
 #include "map.h"
 #include "player.h"
 #include "gold.h"
+#include <sstream>
+#include "info.h"
 using namespace std;
 
-Character * createEnemy(Map * textMap, int id, Floor* currentFloor) {
+Character * createEnemy(Map * textMap, int id, Floor* currentFloor, Info *info) {
 	srand(time(NULL));
 	int random = rand() % 18;
 	Character * newEnemy = NULL;
-	newEnemy = new Human(textMap, id, currentFloor);
+	newEnemy = new Human(textMap, id, currentFloor, info);
 	// if(random < 4){
 	// 	newEnemy = new Human;
 	// }
@@ -66,7 +68,7 @@ void Enemy::move() {
 			location = possibleMove;
 		}
 		else {
-			cout<<"invalid player move"<<endl;
+			// cout<<"invalid player move"<<endl;
 		}
 	}
 }
@@ -77,16 +79,22 @@ void Enemy::attack(Character * player) {
 }
 
 void Enemy::attackBy(Character * player) {
-		cout<<"Old HP Enemy"<<HP<<endl;
+		stringstream ss;
+	ss << HP;
 	HP -= ceil((100.0/(100.0+this->getDef()))*player->getAtk());
-	cout<<"New HP Enemy"<<HP<<endl;
+	stringstream ss2;
+	ss2 << HP;
+	string str = ss.str();
+	string str2 = ss2.str();
+	string s = "Attack Enemy, Enemy starting health: " + str + " Enemy ending health: "+str2;
+	info->notify("Action", s);
 		if (HP <= 0){
-			cout<<"Enemy Died!"<<endl;
 			player->collect(dynamic_cast<Entity *>(gold));
 			this->Enemy::defeated();
 
 		}
-		
+
+
 }
 
 void Enemy::defeated() {

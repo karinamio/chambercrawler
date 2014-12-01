@@ -19,7 +19,8 @@
 #include <math.h>
 #include "potion.h"
 #include <iostream>
-
+#include <sstream>
+#include "info.h"
 using namespace std;
 
 Character * Player::instance = NULL;
@@ -72,10 +73,11 @@ void Player::move(string direction) {
 		location->cellObject=NULL;
 		textMap->notify(location->getY(),location->getX(),location->getSelf());
 		location = cell;
-		cout<<"moved"<<endl;
+
+	info->notify("Action", "moved");
 	}
 	else{
-		cout<<"cant move"<<endl;
+		info->notify("Action", "can't moved");
 	}
 
 }
@@ -84,12 +86,12 @@ void Player::attack(string direction){
 	Cell* cell;
 	cell=location->neighbourAttackable(this, direction);
 	if (cell) {
-		cout<<"attack"<<endl;
+
 		attack(dynamic_cast<Character *>(cell->cellObject));
 		
 	}
 	else{
-		cout<<"cant attack"<<endl;
+		info->notify("Action", "can't attack");
 	}
 }
 
@@ -101,12 +103,14 @@ void Player::attack(Character* enemy) {
 }
 
 void Player::attackBy(Character* enemy) {
-	cout<<"Old HP"<<HP<<endl;
 	HP -= ceil((100.0/(100.0+this->getDef()))*enemy->getAtk());
-	cout<<"New HP"<<HP<<endl;
 	if (HP <= 0){
 		this->Player::defeated();
 	}
+	stringstream ss;
+	ss << HP;
+	string str = ss.str();
+	info->notify("HP", str);
 	
 }
 
@@ -135,8 +139,16 @@ void Player::usePotion(string direction) {
 
 void Player::collect(Entity * collectGold) {
 	gold->addGold(collectGold->getValue());
-	
-	cout<<"collected "<<collectGold->getValue()<<" gold!"<<endl;
+	stringstream ss;
+	ss << collectGold->getValue();
+	string str = ss.str();
+	string s = "Collected " + str + " gold!";
+	info->notify("Action", s);
+
+	stringstream ss2;
+	ss2 << this->gold->getValue();
+	str = ss2.str();
+	info->notify("Gold", str);
 	delete collectGold;
 }
 

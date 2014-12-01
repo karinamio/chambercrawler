@@ -2,12 +2,16 @@
 #include "enemy.h"
 #include "character.h"
 #include "elf.h"
+#include "gold.h"
+#include "map.h"
 #include <time.h>
 #include <cstdlib>
 
 using namespace std;
 
-Elf::Elf(Map *textMap, int ID, Floor * currentFloor) {
+
+Elf::Elf(Map *textMap, int ID, Floor * currentFloor, Info* info) {
+
 	HP = 140;
 	Atk = 30;
 	Def = 10;
@@ -18,11 +22,16 @@ Elf::Elf(Map *textMap, int ID, Floor * currentFloor) {
 	this->textMap = textMap;
 	this->ID = ID;
 	this->currentFloor = currentFloor;
-}
 
-void Elf::attack(Character *enemy) {
-	// double attacks on every race except drow
-}
+	this->info = info;
 
-void Elf::attackBy(Character *enemy) {
 }
+Elf::~Elf(){
+
+}
+// void Elf::attack(Character *enemy) {
+// 	// double attacks on every race except drow
+// }
+
+// void Elf::attackBy(Character *enemy) {
+// }

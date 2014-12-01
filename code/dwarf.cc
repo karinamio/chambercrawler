@@ -2,12 +2,16 @@
 #include "enemy.h"
 #include "character.h"
 #include "dwarf.h"
+#include "gold.h"
+#include "map.h"
 #include <time.h>
 #include <cstdlib>
 
 using namespace std;
 
-Dwarf::Dwarf(Map *textMap, int ID, Floor * currentFloor) {
+
+Dwarf::Dwarf(Map *textMap, int ID, Floor * currentFloor, Info* info) {
+
 	HP = 100;
 	Atk = 20;
 	Def = 30;
@@ -15,15 +19,20 @@ Dwarf::Dwarf(Map *textMap, int ID, Floor * currentFloor) {
 	gold = new Gold(rand()%2);
 	type = "Dwarf";
 	self = 'D';
-	this->textMap = textMap;
+
+		this->textMap = textMap;
 	this->ID = ID;
 	this->currentFloor = currentFloor;
-}
+	this->info = info;
 
-void Dwarf::attack() {
-	// vampirse are allergic to dwaves, lose 5hp rather than gain
 }
+Dwarf::~Dwarf(){
 
-void Dwarf::attackBy() {
-	// vampirse are allergic to dwaves, lose 5hp rather than gain
 }
+// void Dwarf::attack() {
+// 	// vampirse are allergic to dwaves, lose 5hp rather than gain
+// }
+
+// void Dwarf::attackBy() {
+// 	// vampirse are allergic to dwaves, lose 5hp rather than gain
+// }
