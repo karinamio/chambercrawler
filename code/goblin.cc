@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Goblin::Goblin(Info *newInfo, Map* textMap) {
+Goblin::Goblin(Info *newInfo, Map* textMap, Floor * currentFloor) {
 	HP = 110;
 	maxHP = 110;
 	Atk = 15;
@@ -15,6 +15,7 @@ Goblin::Goblin(Info *newInfo, Map* textMap) {
 	type = "Goblin";
 	self = '@';
 	this->textMap = textMap;
+	this->currentFloor = currentFloor;
 }
 
 void Goblin::attack() {

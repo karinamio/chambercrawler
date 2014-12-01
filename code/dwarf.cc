@@ -9,7 +9,9 @@
 
 using namespace std;
 
+
 Dwarf::Dwarf(Map *textMap, int ID, Floor * currentFloor, Info* info) {
+
 	HP = 100;
 	Atk = 20;
 	Def = 30;
@@ -17,10 +19,12 @@ Dwarf::Dwarf(Map *textMap, int ID, Floor * currentFloor, Info* info) {
 	gold = new Gold(rand()%2);
 	type = "Dwarf";
 	self = 'D';
+
 		this->textMap = textMap;
 	this->ID = ID;
 	this->currentFloor = currentFloor;
 	this->info = info;
+
 }
 Dwarf::~Dwarf(){
 

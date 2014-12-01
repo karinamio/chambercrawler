@@ -10,7 +10,9 @@
 
 using namespace std;
 
+
 Orc::Orc(Map *textMap, int ID, Floor * currentFloor, Info * info) {
+
 	HP = 180;
 	Atk = 30;
 	Def = 25;
@@ -22,6 +24,7 @@ Orc::Orc(Map *textMap, int ID, Floor * currentFloor, Info * info) {
 	this->ID = ID;
 	this->currentFloor = currentFloor;
 	this->info = info;
+
 }
 	Orc::~Orc(){
 

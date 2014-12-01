@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Vampire::Vampire(Info *newInfo, Map* textMap) {
+Vampire::Vampire(Info *newInfo, Map* textMap, Floor * currentFloor) {
 	HP = 50;
 	maxHP = INT_MAX;
 	Atk = 25;
@@ -16,6 +16,7 @@ Vampire::Vampire(Info *newInfo, Map* textMap) {
 	type = "Vampire";
 	self = '@';
 	this->textMap = textMap;
+	this->currentFloor = currentFloor;
 }
 
 void Vampire::heal() {

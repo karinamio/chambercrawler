@@ -9,7 +9,9 @@
 
 using namespace std;
 
+
 Elf::Elf(Map *textMap, int ID, Floor * currentFloor, Info* info) {
+
 	HP = 140;
 	Atk = 30;
 	Def = 10;
@@ -20,7 +22,9 @@ Elf::Elf(Map *textMap, int ID, Floor * currentFloor, Info* info) {
 	this->textMap = textMap;
 	this->ID = ID;
 	this->currentFloor = currentFloor;
+
 	this->info = info;
+
 }
 Elf::~Elf(){
 

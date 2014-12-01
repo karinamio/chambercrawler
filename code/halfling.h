@@ -5,9 +5,11 @@
 #include "floor.h"
 class Halfling : public Enemy {
 public:
+
 	Halfling(Map *textMap, int ID, Floor * currentFloor, Info* info);
 	// void attack(Character * player);
 	// void attackBy(Character * player);
+
 	~Halfing();
 };
 

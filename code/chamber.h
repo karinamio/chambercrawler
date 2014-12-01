@@ -1,17 +1,17 @@
 #ifndef __CHAMBER_H__
 #define __CHAMBER_H__
-#include "floorsection.h"
-class Character;
+#include <vector>
+#include <map>
+#include "cell.h"
 
-class Chamber: public FloorSection {
+class Chamber {
+	int chamberNumber;
+	std::map<Cell*, bool> isCellUsed;
+	std::vector<Cell*> cellsInChamber;
+	void buildChamber(Cell*[][79]);
 public:
 	Chamber(int, Cell *[][79]);
-	void spawnCharacter(Character *);
-	void spawnItems();
-	void spawnEnemies();
-	void decorateCells();
-	void spawnStairs();
-	
+	Cell * getRandomCell();
 };
 
 #endif

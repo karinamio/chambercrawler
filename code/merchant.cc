@@ -11,8 +11,10 @@
 #include <math.h>
 #include "info.h"
 using namespace std;
+
 bool Merchant::hostile;
 Merchant::Merchant(Map *textMap, int ID, Floor * currentFloor, Info* info) {
+
 	hostile = false;
 	HP = 30;
 	Atk = 70;
@@ -24,7 +26,9 @@ Merchant::Merchant(Map *textMap, int ID, Floor * currentFloor, Info* info) {
 	this->textMap = textMap;
 	this->ID = ID;
 	this->currentFloor = currentFloor;
+
 	this->info = info;
+
 }
 
 

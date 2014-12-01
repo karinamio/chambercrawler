@@ -5,7 +5,7 @@ class Dragon : public Enemy {
 private:
 	Gold * hoard;
 public:
-	Dragon();
+	Dragon(Map *, int, Floor*);
 	void move();
 	void defeated();
 	void attack(Player * player);

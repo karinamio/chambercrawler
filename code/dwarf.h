@@ -5,9 +5,11 @@
 #include "floor.h"
 class Dwarf : public Enemy {
 public:
+
 	Dwarf(Map *textMap, int ID, Floor * currentFloor, Info* info);
 	// void attack(Character * player);
 	// void attackBy(Character * player);
+
 	~Dwarf();
 };
 
